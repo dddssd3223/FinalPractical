@@ -1,0 +1,26 @@
+{
+  "variant_type": "생존 확인형",
+  "type": "주관식",
+  "basis": "3-A 2행 ((나) 24 → 54)",
+  "changed": [
+    "(나) 24 → 54"
+  ],
+  "naturalness": "",
+  "stem": "다항함수 $f(x)$가 다음 조건을 만족시킨다. 함수 $y=f(x)$의 그래프와 직선 $y=2$는 서로 다른 세 점 $\\mathrm A$, $\\mathrm B$, $\\mathrm C$에서 만나고 점 $\\mathrm B$는 선분 $\\mathrm{AC}$를 $1:2$로 내분하는 점일 때, $f(1)$의 최댓값을 구하시오. (단, 원점 $\\mathrm O$에 대하여 $\\overline{\\mathrm{OA}}<\\overline{\\mathrm{OB}}<\\overline{\\mathrm{OC}}$이다.)",
+  "box": [
+    "(가) $\\displaystyle\\lim_{x\\to\\infty}\\frac{f(x)}{x^3}=2$",
+    "(나) $\\displaystyle\\lim_{x\\to0}\\frac{f(x)-2}{x}=54$"
+  ],
+  "answer": "82",
+  "trap_answer": null,
+  "trap_path": null,
+  "explanation": [
+    "$f(x)=2x^3+px^2+54x+2$이고 $f(x)=2$의 근은 $0$, $\\alpha$, $\\beta$ ($\\alpha\\beta=27$)이다.",
+    "원점 거리 순서로 A$=0$, $B=\\frac C3$이므로 $3\\alpha^2=27$, $(\\alpha,\\beta)=\\pm(3,9)$이다.",
+    "$p=\\mp24$이고 $f(1)=58+p$의 최댓값은 $82$이다."
+  ],
+  "id": "67p-44-2",
+  "origin": "67p-44",
+  "source": "2024년 수능특강 [24009-0075] 변형",
+  "chapter": 3
+}

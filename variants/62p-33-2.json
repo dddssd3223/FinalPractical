@@ -1,0 +1,33 @@
+{
+  "variant_type": "생존 확인형",
+  "type": "객관식",
+  "basis": "3-A 2행 ((나) 값 2 → 4)",
+  "changed": [
+    "(나) 값 2 → 4"
+  ],
+  "naturalness": "",
+  "stem": "이차함수 $f(x)$가 다음 조건을 만족시킬 때, $f'(1)$의 값은?",
+  "box": [
+    "(가) $\\displaystyle\\lim_{x\\to\\infty}\\frac{\\{f(x)\\}^2}{3x^2f(x)+f(x^2)}=3$",
+    "(나) $\\displaystyle\\lim_{x\\to0}\\frac{f(x)}{x}=4$"
+  ],
+  "choices": [
+    "24",
+    "26",
+    "28",
+    "30",
+    "32"
+  ],
+  "answer": "28",
+  "trap_answer": null,
+  "trap_path": null,
+  "explanation": [
+    "(나)에서 $f(0)=0$, $f'(0)=4$이므로 $f(x)=ax^2+4x$이다.",
+    "(가)에서 분자 $a^2x^4$, 분모 $4ax^4$이므로 $\\frac a4=3$, $a=12$이다.",
+    "$f'(x)=24x+4$이므로 $f'(1)=28$이다."
+  ],
+  "id": "62p-33-2",
+  "origin": "62p-33",
+  "source": "2024년 수능특강 [24009-0064] 변형",
+  "chapter": 3
+}
