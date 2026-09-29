@@ -74,15 +74,15 @@ def answer_text(q):
 
 
 # ── 문항 쪽 ──
-BOX = '<div style="border: 1px solid #e7c3ce; padding: 4mm 6mm; font-size: 15px; line-height: 2.0;">{}</div>'
-BOGI = ('<div style="position: relative; border: 1px solid #e7c3ce; padding: 6mm 6mm 4mm; font-size: 15px; line-height: 2.0;">'
+BOX = '<div style="border: 1px solid #e7c3ce; padding: 4mm 6mm; font-size: 14px; line-height: 2.0;">{}</div>'
+BOGI = ('<div style="position: relative; border: 1px solid #e7c3ce; padding: 6mm 6mm 4mm; font-size: 14px; line-height: 2.0;">'
         '<span style="position: absolute; top: -2.2mm; left: 50%; transform: translateX(-50%); background: #ffffff; padding: 0 3mm; '
         "font-family: 'Aggro', sans-serif; font-weight: 300; font-size: 12px; color: #d2436a; letter-spacing: 0.2em;\">&lt;보기&gt;</span>{}</div>")
-CHOICES = '<div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4mm; font-size: 15px;">\n      {}\n    </div>'
+CHOICES = '<div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4mm; font-size: 14px;">\n      {}\n    </div>'
 
 
 def body_html(q):
-    parts = [f'<p style="margin: 0; font-size: 15px; line-height: 2.1;">{esc(q["stem"])}</p>']
+    parts = [f'<p style="margin: 0; font-size: 14px; line-height: 2.1;">{esc(q["stem"])}</p>']
     if q.get("fig"):  # 기출: 원본에서 잘라 낸 그림
         parts.append(f'<div style="align-self: center;"><img src="figs/{q["fig"]}.png" style="max-width: 82mm; max-height: 62mm;"></div>')
     elif q["id"] in FIGS:  # 그림 (도형·그래프 문항)
@@ -153,6 +153,7 @@ def solution_page(blocks, num):
     if num % 2 == 0:
         num_block = re.search(r'\n  <div style="position: absolute; right: 0; bottom: 14mm;.*?\n  </div>', sec, re.S).group(0)
         sec = sec.replace(num_block, FOOT_L).replace("left: 18mm; bottom: 15mm; font-family", "right: 18mm; bottom: 15mm; font-family")
+    sec = sec.replace("column-gap: 12mm; font-size: 13px;", "column-gap: 12mm; font-size: 12px;")
     sec = mirror_head(sec, num)
     sec = sec.replace('id="sol"', f'id="s{num:03d}"')
     return set_num(sec, num)
@@ -289,7 +290,7 @@ def measure(all_blocks):
     style = re.search(r"<style>.*?</style>", HTML, re.S).group(0).replace('url("fonts/', 'url("../')
     page = ('<!DOCTYPE html><html><head><meta charset="utf-8">'
             '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">' + style +
-            '</head><body><div id="col" style="width: 306px; font-family: \'Noto Serif KR\', serif; color: #1e1a1b; font-size: 13px; line-height: 2.0;">'
+            '</head><body><div id="col" style="width: 306px; font-family: \'Noto Serif KR\', serif; color: #1e1a1b; font-size: 12px; line-height: 2.0;">'
             + "".join(all_blocks) + "</div></body></html>")
     mp = OUT / "_measure.html"
     mp.write_text(page)
@@ -307,12 +308,9 @@ def main():
     allitems = [(ch, l, q) for ch, items in data.items() for l, q in items]
     blocks = [sol_block(l, q) for _, l, q in allitems]
     hs = measure(blocks)
-    pages, num = [None, memo()], 2  # 1쪽 목차(나중에 채움), 2쪽 MEMO, 3쪽 챕터 표지, 4쪽 첫 문항 (템플릿과 같음)
+    pages, num = [None], 2  # 1쪽 목차(나중에 채움), 3쪽 챕터 표지, 4쪽 첫 문항 (템플릿 쪽 번호와 같음)
     toc = []
     for ch, items in data.items():
-        if (num + 1) % 2 == 0:  # 챕터 표지는 홀수(오른쪽) 쪽, 첫 문항은 짝수 쪽
-            num += 1
-            pages.append(memo())
         num += 1
         pages.append(cover(ch))
         toc.append((f"Chapter {CHAPTERS[ch][0]}", CHAPTERS[ch][1], num))

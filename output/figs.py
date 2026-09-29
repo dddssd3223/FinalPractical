@@ -196,5 +196,59 @@ def f81():  # f=x³−2x, A(−1,1), B(2,4), k=−0.5
     return F.svg()
 
 
+def f18():  # 18p-42-1: x<0 에서 x+1, 0≤x<1 에서 양수 삼차(f(0)=1, x→1− 에서 0), f(1)=2, x≥1 에서 −x+3
+    F = Fig(-3.4, 3.6, -2.6, 2.8, w=320)
+    F.axes()
+    F.curve(lambda x: x + 1, -3.3, 0)
+    F.curve(lambda x: (x - 1)*(x + 0.5)*(x - 2), 0, 0.999)
+    F.curve(lambda x: -x + 3, 1, 3.5)
+    F.el.append('<circle cx="%.1f" cy="%.1f" r="2.6" fill="#ffffff" stroke="%s" stroke-width="1.2"/>' % (*F.P(1, 0), PINK))
+    F.dot((1, 2)); F.dot((0, 1))
+    F.line((1, 0), (1, 2), color=GRAY, dash="3 3", width=0.8)
+    for xv, lab in ((-1, "−1"), (1, "1"), (3, "3")):
+        F.text(xv, 0, lab, dx=-4, dy=14, italic=False, size=11)
+    F.text(0, 1, "1", dx=-12, dy=4, italic=False, size=11); F.text(0, 2, "2", dx=-12, dy=4, italic=False, size=11)
+    F.line((0, 2), (1, 2), color=GRAY, dash="3 3", width=0.8)
+    F.text(2.2, 1.4, "y=f(x)", size=11)
+    return F.svg()
+
+
+def f39():  # 39p-27-1: 중심 P(3,4) 인 원 C 와 직선 y=mx
+    F = Fig(-0.8, 6.6, -0.8, 6.8, w=260)
+    F.axes()
+    r = 2.0
+    cx, cy = F.P(3, 4); rx = r/(F.x1 - F.x0)*F.w
+    F.el.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{rx:.1f}" fill="none" stroke="{PINK}" stroke-width="1.5"/>')
+    F.curve(lambda x: 0.8*x, -0.5, 6.5, color=INK, width=1.0)
+    F.dot((3, 4), "P", 6, -4)
+    F.line((3, 0), (3, 4), color=GRAY, dash="3 3", width=0.8); F.line((0, 4), (3, 4), color=GRAY, dash="3 3", width=0.8)
+    F.text(3, 0, "3", dx=-4, dy=14, italic=False, size=11); F.text(0, 4, "4", dx=-12, dy=4, italic=False, size=11)
+    F.text(4.3, 5.6, "C", size=12); F.text(6.0, 4.8, "y=mx", dx=-18, dy=-4, size=11)
+    return F.svg()
+
+
+def f46():  # 46p-46-1: y=|x²−2x| (x≥0) 와 직선 y=t
+    F = Fig(-1.2, 3.4, -0.6, 3.4, w=280)
+    F.axes()
+    F.curve(lambda x: abs(x*x - 2*x), 0, 3.0)
+    F.curve(lambda x: 0.6, -1.1, 3.3, color=INK, width=1.0, dash="5 3")
+    F.text(3.3, 0.6, "y=t", dx=-22, dy=-5, size=11)
+    F.text(2, 0, "2", dx=-3, dy=14, italic=False, size=11); F.text(1, 0, "1", dx=-3, dy=14, italic=False, size=11)
+    F.text(2.6, 2.9, "y=|x²−2x|", dx=-30, dy=0, size=11)
+    return F.svg()
+
+
+def f76():  # 76p-65-1: f=x+1 (x<1), −2x+4 (x≥1), A(−1,−1), B(1,3)
+    F = Fig(-2.4, 3.2, -2.2, 3.8, w=300)
+    F.axes()
+    F.curve(lambda x: x + 1, -2.3, 1)
+    F.curve(lambda x: -2*x + 4, 1, 3.0)
+    F.dot((-1, -1), "A", -14, 12); F.dot((1, 3), "B", 6, -4); F.dot((1, 2))
+    F.line((-1, 0), (-1, -1), color=GRAY, dash="3 3", width=0.8); F.line((0, -1), (-1, -1), color=GRAY, dash="3 3", width=0.8)
+    F.line((1, 0), (1, 3), color=GRAY, dash="3 3", width=0.8)
+    F.text(2.4, 1.1, "y=f(x)", size=11)
+    return F.svg()
+
+
 FIGS = {"17p-40-1": f17, "19p-44-1": f19, "20p-46-1": f20, "21p-48-1": f21, "26p-61-1": f26a,
-        "26p-62-1": f26b, "72p-57-1": f72, "81p-5-1": f81}  # 원문에 그림이 있던 문항만 (80p-1 은 원문에 그림 없음)
+        "26p-62-1": f26b, "18p-42-1": f18, "39p-27-1": f39, "46p-46-1": f46, "76p-65-1": f76, "72p-57-1": f72, "81p-5-1": f81}  # 원문에 그림이 있던 문항만 (80p-1 은 원문에 그림 없음)

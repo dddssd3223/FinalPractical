@@ -22,7 +22,7 @@ VARS = [
         variant_type="분기 유발형", type="주관식",
         basis="3-A 1행 (x=0 의 점프가 사라지고 왼쪽 조각의 근 x=−1 이 구간 안에 들어옴)",
         changed=["x<0 조각 ⅑(x+3)(x−3) → x+1"], naturalness="",
-        stem=r"함수 $f(x)=\begin{cases}x+1 & (x<0)\\ (x-\alpha)(x-\beta)(x-\gamma) & (0\le x<1)\\ -x+3 & (x\ge1)\end{cases}$에 대하여 " + MID_TXT + r"이다. 최고차항의 계수가 $1$인 삼차함수 $g(x)$에 대하여 $-3<a<3$인 모든 실수 $a$에 대하여 $\displaystyle\lim_{x\to a}\frac{g(x)}{f(x)}$의 값이 존재할 때, $g(3)$의 값을 구하시오. (단, $\alpha$, $\beta$, $\gamma$는 서로 다른 상수이다.)",
+        stem=r"함수 $f(x)=\begin{cases}x+1 & (x<0)\\ (x-\alpha)(x-\beta)(x-\gamma) & (0\le x<1)\\ -x+3 & (x\ge1)\end{cases}$의 그래프가 그림과 같고, 함수 $g(x)$는 최고차항의 계수가 $1$인 삼차함수이다. $-3<a<3$인 모든 실수 $a$에 대하여 $\displaystyle\lim_{x\to a}\frac{g(x)}{f(x)}$의 값이 존재할 때, $g(3)$의 값을 구하시오. (단, $\alpha$, $\beta$, $\gamma$는 서로 다른 상수이다.)",
         answer="16", trap_answer="12",
         trap_path="원문처럼 x=0 에서 g(0)=0 을 쓰고 g=x(x−1)² → 12 (x=0 은 연속이라 조건이 없고, 대신 x=−1 이 f 의 근).",
         explanation=[
