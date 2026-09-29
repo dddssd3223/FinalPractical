@@ -1,0 +1,22 @@
+{
+  "variant_type": "생존 확인형",
+  "type": "주관식",
+  "basis": "3-A 2행 (g=x−(2a+5))",
+  "changed": [
+    "g=x−(2a+7) → x−(2a+5)"
+  ],
+  "naturalness": "",
+  "stem": "두 함수 $f(x)=\\begin{cases}x+3 & (x\\le a)\\\\ x^2-x & (x>a)\\end{cases}$, $g(x)=x-(2a+5)$에 대하여 함수 $f(x)g(x)$가 실수 전체의 집합에서 연속이 되도록 하는 모든 실수 $a$의 값의 곱을 구하시오.",
+  "answer": "15",
+  "trap_answer": null,
+  "trap_path": null,
+  "explanation": [
+    "(i) $f$가 연속: $a+3=a^2-a$, $a=3$ 또는 $-1$.",
+    "(ii) $g(a)=-a-5=0$: $a=-5$.",
+    "곱은 $3\\times(-1)\\times(-5)=15$이다."
+  ],
+  "id": "46p-45-2",
+  "origin": "46p-45",
+  "source": "2016학년도 대수능 A형 27번 변형",
+  "chapter": 2
+}

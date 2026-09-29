@@ -1,0 +1,26 @@
+{
+  "variant_type": "생존 확인형",
+  "type": "주관식",
+  "basis": "3-A 2행 (묻는 값 g(−5) → g(−12))",
+  "changed": [
+    "묻는 값 g(−5) → g(−12)"
+  ],
+  "naturalness": "",
+  "stem": "최고차항의 계수가 양수인 삼차함수 $f(x)$와 실수 $t$에 대하여 함수 $g(x)=\\begin{cases}-f(x) & (x<t)\\\\ f(x) & (x\\ge t)\\end{cases}$는 실수 전체의 집합에서 연속이고 다음 조건을 만족시킨다. $g(-12)$의 값을 구하시오. (단, $g(-1)\\neq-\\frac72g(1)$)",
+  "box": [
+    "(가) 모든 실수 $a$에 대하여 $\\displaystyle\\lim_{x\\to a+}\\frac{g(x)}{x(x-2)}$의 값이 존재한다.",
+    "(나) $\\displaystyle\\lim_{x\\to m+}\\frac{g(x)}{x(x-2)}$의 값이 음수가 되도록 하는 자연수 $m$의 집합은 $\\left\\{g(-1),\\,-\\frac72g(1)\\right\\}$이다."
+  ],
+  "answer": "564",
+  "trap_answer": null,
+  "trap_path": null,
+  "explanation": [
+    "원문과 같이 $t=2$, $f(x)=\\frac3{14}x(x-2)\\left(x-\\frac{11}3\\right)$이다.",
+    "$-12<t$이므로 $g(-12)=-f(-12)$이다.",
+    "$-f(-12)=-\\frac3{14}(-12)(-14)\\left(-\\frac{47}3\\right)=564$이다."
+  ],
+  "id": "51p-55-2",
+  "origin": "51p-55",
+  "source": "2026학년도 대수능 21번 변형",
+  "chapter": 2
+}
