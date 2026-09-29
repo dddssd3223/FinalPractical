@@ -310,7 +310,7 @@ def main():
     allitems = [(ch, l, q) for ch, items in data.items() for l, q in items]
     blocks = [sol_block(l, q) for _, l, q in allitems]
     hs = measure(blocks)
-    pages, num = [None], 2  # 1쪽 목차(나중에 채움), 3쪽 챕터 표지, 4쪽 첫 문항 (템플릿 쪽 번호와 같음)
+    pages, num = [None, memo()], 2  # 1쪽 목차(나중에 채움), 2쪽 MEMO, 3쪽 챕터 표지, 4쪽 첫 문항 (템플릿 쪽 번호와 같음)
     toc = []
     for ch, items in data.items():
         num += 1
