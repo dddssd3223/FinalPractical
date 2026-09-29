@@ -1,0 +1,33 @@
+{
+  "variant_type": "생존 확인형",
+  "type": "객관식",
+  "basis": "3-A 3행 (첫 극한값 6 → 8)",
+  "changed": [
+    "첫 극한값 6 → 8"
+  ],
+  "naturalness": "",
+  "stem": "다음 조건을 만족시키는 모든 다항함수 $f(x)$에 대하여 $f(1)$의 최댓값은?",
+  "box": [
+    "$\\displaystyle\\lim_{x\\to\\infty}\\frac{f(x)-4x^3+3x^2}{x^{n+1}+1}=8$, $\\displaystyle\\lim_{x\\to0}\\frac{f(x)}{x^n}=4$인 자연수 $n$이 존재한다."
+  ],
+  "choices": [
+    "12",
+    "13",
+    "14",
+    "15",
+    "16"
+  ],
+  "answer": "16",
+  "trap_answer": null,
+  "trap_path": null,
+  "explanation": [
+    "$n\\ge3$: $f(x)=8x^{n+1}+4x^n$, $f(1)=12$이다.",
+    "$n=2$: $f(x)=12x^3+4x^2$, $f(1)=16$이다.",
+    "$n=1$: $f(x)=4x^3+5x^2+4x$, $f(1)=13$이다.",
+    "최댓값은 $16$이다."
+  ],
+  "id": "27p-64-2",
+  "origin": "27p-64",
+  "source": "2020학년도 수능 6월 모의평가 나형 20번 변형",
+  "chapter": 1
+}
