@@ -1,0 +1,33 @@
+{
+  "variant_type": "생존 확인형",
+  "type": "객관식",
+  "basis": "3-A 2행 ((가)의 값 2 → 4)",
+  "changed": [
+    "(가)의 값 2 → 4"
+  ],
+  "naturalness": "",
+  "stem": "상수항과 계수가 모두 정수인 두 다항함수 $f(x)$, $g(x)$가 다음 조건을 만족시킬 때, $f(2)$의 최댓값은?",
+  "box": [
+    "(가) $\\displaystyle\\lim_{x\\to\\infty}\\frac{f(x)g(x)}{x^3}=4$",
+    "(나) $\\displaystyle\\lim_{x\\to0}\\frac{f(x)g(x)}{x^2}=-4$"
+  ],
+  "choices": [
+    "8",
+    "12",
+    "16",
+    "20",
+    "24"
+  ],
+  "answer": "16",
+  "trap_answer": null,
+  "trap_path": null,
+  "explanation": [
+    "$f(x)g(x)=4x^3-4x^2=4x^2(x-1)$이다.",
+    "$f(x)$는 $\\pm2^a x^b(x-1)^c$ ($a\\in\\{0,1,2\\}$) 꼴이고 $x=2$에서 $x-1=1$이다.",
+    "$f(x)=4x^2(x-1)$ (또는 $4x^2$)일 때 $f(2)=16$으로 최대이다."
+  ],
+  "id": "25p-59-2",
+  "origin": "25p-59",
+  "source": "2020학년도 수능 나형 14번 변형",
+  "chapter": 1
+}

@@ -1,0 +1,30 @@
+{
+  "variant_type": "분기 유발형",
+  "type": "객관식",
+  "basis": "3-A 1행 (극한 방향 → 주요 차수 변화)",
+  "changed": [
+    "t→∞ → t→0+"
+  ],
+  "naturalness": "",
+  "stem": "양의 실수 $t$에 대하여 좌표평면 위에 네 점 $\\mathrm{A}(t,\\,0)$, $\\mathrm{B}(0,\\,1)$, $\\mathrm{C}(0,\\,t)$, $\\mathrm{D}(-1,\\,0)$이 있다. 곡선 $y=\\sqrt x$가 선분 $\\mathrm{AB}$와 만나는 점을 $\\mathrm{P}$, 곡선 $y=x^2\\,(x<0)$이 선분 $\\mathrm{CD}$와 만나는 점을 $\\mathrm{Q}$라 하자. 원점 $\\mathrm{O}$에 대하여 삼각형 $\\mathrm{OAP}$의 넓이를 $S(t)$, 삼각형 $\\mathrm{OQD}$의 넓이를 $T(t)$라 할 때, $\\displaystyle\\lim_{t\\to0+}\\frac{tT(t)}{S(t)}$의 값은?",
+  "choices": [
+    "0",
+    "1/4",
+    "1/2",
+    "1",
+    "2"
+  ],
+  "answer": "0",
+  "trap_answer": "1",
+  "trap_path": "원문처럼 P, Q 의 y 좌표가 1 로 간다고 보고 tT/S → t·½/(½t)=1.",
+  "explanation": [
+    "$y_{\\mathrm P}$는 $y^2+ty-t=0$의 양의 근이므로 $y_{\\mathrm P}=\\dfrac{-t+\\sqrt{t^2+4t}}{2}$, $t\\to0+$일 때 $y_{\\mathrm P}\\approx\\sqrt t$이다.",
+    "$x_{\\mathrm Q}=\\dfrac{t-\\sqrt{t^2+4t}}{2}\\approx-\\sqrt t$이므로 $y_{\\mathrm Q}=x_{\\mathrm Q}^2\\approx t$이다.",
+    "함정: $t\\to0+$에서는 P, Q가 원점으로 모이므로 좌표가 $1$로 가지 않는다.",
+    "$\\dfrac{tT}{S}=\\dfrac{t\\cdot\\frac12y_{\\mathrm Q}}{\\frac12t\\,y_{\\mathrm P}}\\approx\\dfrac{t}{\\sqrt t}=\\sqrt t\\to0$이다."
+  ],
+  "id": "19p-44-1",
+  "origin": "19p-44",
+  "source": "2022년 수능특강 [22009-0026] 변형",
+  "chapter": 1
+}

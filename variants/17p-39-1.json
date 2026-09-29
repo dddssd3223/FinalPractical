@@ -1,0 +1,23 @@
+{
+  "variant_type": "생존 확인형",
+  "type": "주관식",
+  "basis": "3-A 2행 (f(3)=18 → 36)",
+  "changed": [
+    "lim_{x→3} f(x)=18 → 36"
+  ],
+  "naturalness": "",
+  "stem": "두 실수 $a$, $b$와 최고차항의 계수가 $1$인 오차함수 $f(x)$에 대하여 두 집합 $A$, $B$를 각각 $A=\\left\\{a\\,\\middle|\\,\\displaystyle\\lim_{x\\to a}\\frac{x^3(x-1)}{f(x)}\\text{의 값이 존재한다.}\\right\\}$, $B=\\left\\{b\\,\\middle|\\,\\displaystyle\\lim_{x\\to b}\\frac{f(x)}{x^2(x-1)^4}\\text{의 값이 존재하지 않는다.}\\right\\}$라 하자. $0\\in(A-B)$, $1\\in(B-A)$이고 $\\displaystyle\\lim_{x\\to3}f(x)=36$일 때, $f(4)$의 값을 구하시오.",
+  "answer": "288",
+  "trap_answer": null,
+  "trap_path": null,
+  "explanation": [
+    "$x=0$에서의 근의 차수를 $m_0$라 하면 $0\\in A$에서 $m_0\\le3$, $0\\notin B$에서 $m_0\\ge2$이다.",
+    "$x=1$에서의 근의 차수를 $m_1$이라 하면 $1\\in B$에서 $m_1<4$, $1\\notin A$에서 $m_1>1$이다.",
+    "오차함수이므로 $f(x)=x^2(x-1)^2(x-c)$ 꼴이다.",
+    "$f(3)=36(3-c)=36$에서 $c=2$이므로 $f(4)=16\\times9\\times2=288$이다."
+  ],
+  "id": "17p-39-1",
+  "origin": "17p-39",
+  "source": "2022년 수능특강 [22009-0024] 변형",
+  "chapter": 1
+}

@@ -1,0 +1,31 @@
+{
+  "variant_type": "분기 유발형",
+  "type": "객관식",
+  "basis": "3-A 1행 (대칭축이 y축이 아니면 x_C≠−x_A)",
+  "changed": [
+    "곡선 y=x² → y=x²+x",
+    "묻는 값 (AH−CH)/t → AH−CH"
+  ],
+  "naturalness": "곡선을 바꾸면 AH−CH 가 0 이 아닌 값으로 가서 /t 가 발산하므로 묻는 값을 바꾼 것은 필수.",
+  "stem": "실수 $t\\,(t>0)$에 대하여 직선 $y=x+t$와 곡선 $y=x^2+x$가 만나는 두 점을 $\\mathrm A$, $\\mathrm B$라 하자. 점 $\\mathrm A$를 지나고 $x$축에 평행한 직선이 곡선 $y=x^2+x$와 만나는 점 중 $\\mathrm A$가 아닌 점을 $\\mathrm C$, 점 $\\mathrm B$에서 직선 $\\mathrm{AC}$에 내린 수선의 발을 $\\mathrm H$라 하자. $\\displaystyle\\lim_{t\\to0+}\\left(\\overline{\\mathrm{AH}}-\\overline{\\mathrm{CH}}\\right)$의 값은? (단, 점 $\\mathrm A$의 $x$좌표는 양수이다.)",
+  "choices": [
+    "-2",
+    "-1",
+    "0",
+    "1",
+    "2"
+  ],
+  "answer": "-1",
+  "trap_answer": "0",
+  "trap_path": "원문처럼 x_C=−x_A 로 보고 AH−CH=−2x_B=2√t → 0.",
+  "explanation": [
+    "$x^2+x=x+t$에서 $x=\\pm\\sqrt t$이므로 $x_{\\mathrm A}=\\sqrt t$, $x_{\\mathrm B}=-\\sqrt t$이다.",
+    "곡선의 대칭축은 $x=-\\frac12$이므로 $x_{\\mathrm C}=-1-\\sqrt t$이다. 함정: $-x_{\\mathrm A}$가 아니다.",
+    "$\\overline{\\mathrm{AH}}=x_{\\mathrm A}-x_{\\mathrm B}=2\\sqrt t$, $\\overline{\\mathrm{CH}}=x_{\\mathrm B}-x_{\\mathrm C}=1$이다.",
+    "$\\overline{\\mathrm{AH}}-\\overline{\\mathrm{CH}}=2\\sqrt t-1\\to-1$이다."
+  ],
+  "id": "26p-61-1",
+  "origin": "26p-61",
+  "source": "2023학년도 수능 9월 모의평가 12번 변형",
+  "chapter": 1
+}

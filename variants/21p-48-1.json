@@ -1,0 +1,31 @@
+{
+  "variant_type": "분기 유발형",
+  "type": "객관식",
+  "basis": "3-A 1행 (R 이 C 로 모이지 않음 → 차수 변화)",
+  "changed": [
+    "Q: 선분 AD 위 DQ=t/2 → 선분 AB 위 BQ=t/2",
+    "묻는 값 S/t³ → S/t"
+  ],
+  "naturalness": "Q 의 위치를 바꾸면 S 가 1차가 되어 S/t³ 이 발산하므로 묻는 값의 차수를 맞춘 것은 필수.",
+  "stem": "한 변의 길이가 $1$인 정사각형 $\\mathrm{ABCD}$가 있다. ($\\mathrm A$는 왼쪽 위, $\\mathrm D$는 오른쪽 위, $\\mathrm B$는 왼쪽 아래, $\\mathrm C$는 오른쪽 아래 꼭짓점) $0<t<1$인 실수 $t$에 대하여 선분 $\\mathrm{CD}$ 위에 점 $\\mathrm P$를 $\\overline{\\mathrm{CP}}=t$가 되도록 잡고 선분 $\\mathrm{AB}$ 위에 점 $\\mathrm Q$를 $\\overline{\\mathrm{BQ}}=\\frac t2$가 되도록 잡을 때, 선분 $\\mathrm{BP}$와 선분 $\\mathrm{CQ}$의 교점을 $\\mathrm R$이라 하자. 삼각형 $\\mathrm{CPR}$의 넓이를 $S(t)$라 할 때, $\\displaystyle\\lim_{t\\to0+}\\frac{S(t)}{t}$의 값은?",
+  "choices": [
+    "0",
+    "1/6",
+    "1/4",
+    "1/3",
+    "1/2"
+  ],
+  "answer": "1/3",
+  "trap_answer": "0",
+  "trap_path": "원문처럼 R→C 로 보고 높이를 t² 차수로 잡아 S~t³ → S/t→0.",
+  "explanation": [
+    "$\\mathrm B(0,0)$, $\\mathrm C(1,0)$, $\\mathrm P(1,t)$, $\\mathrm Q(0,\\frac t2)$로 두면 BP: $y=tx$, CQ: $y=\\frac t2(1-x)$이다.",
+    "$tx=\\frac t2(1-x)$에서 $x=\\frac13$이므로 $\\mathrm R\\left(\\frac13,\\,\\frac t3\\right)$이다.",
+    "함정: R은 C로 다가가지 않고 $x=\\frac13$에 고정된다.",
+    "$S(t)=\\frac12\\times t\\times\\left(1-\\frac13\\right)=\\frac t3$이므로 극한은 $\\frac13$이다."
+  ],
+  "id": "21p-48-1",
+  "origin": "21p-48",
+  "source": "2025년 수능특강 [25009-0026] 변형",
+  "chapter": 1
+}

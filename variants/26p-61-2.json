@@ -1,0 +1,29 @@
+{
+  "variant_type": "생존 확인형",
+  "type": "객관식",
+  "basis": "3-A 2행 (직선 기울기 1 → 2)",
+  "changed": [
+    "직선 y=x+t → y=2x+t"
+  ],
+  "naturalness": "",
+  "stem": "실수 $t\\,(t>0)$에 대하여 직선 $y=2x+t$와 곡선 $y=x^2$이 만나는 두 점을 $\\mathrm A$, $\\mathrm B$라 하자. 점 $\\mathrm A$를 지나고 $x$축에 평행한 직선이 곡선 $y=x^2$과 만나는 점 중 $\\mathrm A$가 아닌 점을 $\\mathrm C$, 점 $\\mathrm B$에서 선분 $\\mathrm{AC}$에 내린 수선의 발을 $\\mathrm H$라 하자. $\\displaystyle\\lim_{t\\to0+}\\frac{\\overline{\\mathrm{AH}}-\\overline{\\mathrm{CH}}}{t}$의 값은? (단, 점 $\\mathrm A$의 $x$좌표는 양수이다.)",
+  "choices": [
+    "1/2",
+    "1",
+    "3/2",
+    "2",
+    "5/2"
+  ],
+  "answer": "1",
+  "trap_answer": null,
+  "trap_path": null,
+  "explanation": [
+    "$x^2-2x-t=0$에서 $x_{\\mathrm A}=1+\\sqrt{1+t}$, $x_{\\mathrm B}=1-\\sqrt{1+t}$이다.",
+    "$x_{\\mathrm C}=-x_{\\mathrm A}$이므로 $\\overline{\\mathrm{AH}}-\\overline{\\mathrm{CH}}=-2x_{\\mathrm B}=2(\\sqrt{1+t}-1)$이다.",
+    "$\\displaystyle\\lim_{t\\to0+}\\frac{2(\\sqrt{1+t}-1)}{t}=1$이다."
+  ],
+  "id": "26p-61-2",
+  "origin": "26p-61",
+  "source": "2023학년도 수능 9월 모의평가 12번 변형",
+  "chapter": 1
+}

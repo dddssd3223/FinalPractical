@@ -1,0 +1,29 @@
+{
+  "variant_type": "생존 확인형",
+  "type": "객관식",
+  "basis": "3-A 3행 (직선 y=2tx−4, t→2−)",
+  "changed": [
+    "직선 y=2tx−1 → y=2tx−4, 0<t<1 → 0<t<2, t→1− → t→2−"
+  ],
+  "naturalness": "접하는 t 를 옮긴 한 가지 변경에 범위·극한점을 맞춘 것.",
+  "stem": "실수 $t\\,(0<t<2)$에 대하여 곡선 $y=x^2$ 위의 점 중에서 직선 $y=2tx-4$와의 거리가 최소인 점을 $\\mathrm P$라 하고, 직선 $\\mathrm{OP}$가 직선 $y=2tx-4$와 만나는 점을 $\\mathrm Q$라 할 때, $\\displaystyle\\lim_{t\\to2-}\\frac{\\overline{\\mathrm{PQ}}}{2-t}$의 값은? (단, $\\mathrm O$는 원점이다.)",
+  "choices": [
+    "2*sqrt(3)",
+    "4",
+    "2*sqrt(5)",
+    "2*sqrt(6)",
+    "2*sqrt(7)"
+  ],
+  "answer": "2*sqrt(5)",
+  "trap_answer": null,
+  "trap_path": null,
+  "explanation": [
+    "$\\mathrm P(t,\\,t^2)$, OP: $y=tx$, $\\mathrm Q\\left(\\frac4t,\\,4\\right)$이다.",
+    "$\\overline{\\mathrm{PQ}}=(4-t^2)\\sqrt{1+\\frac1{t^2}}=(2-t)(2+t)\\sqrt{1+\\frac1{t^2}}$이다.",
+    "$\\displaystyle\\lim_{t\\to2-}\\frac{\\overline{\\mathrm{PQ}}}{2-t}=4\\sqrt{\\frac54}=2\\sqrt5$이다."
+  ],
+  "id": "26p-62-2",
+  "origin": "26p-62",
+  "source": "2024학년도 수능 6월 모의평가 11번 변형",
+  "chapter": 1
+}

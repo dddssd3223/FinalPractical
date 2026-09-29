@@ -87,3 +87,17 @@ def plim_exists(pieces, F, a):
     l, r = plim(pieces, F, a, '-'), plim(pieces, F, a, '+')
     ok = l.is_finite and r.is_finite and simplify(l - r) == 0
     return bool(ok), (l if ok else None)
+
+
+def clim(pieces, inner, F, point, side):
+    """x→point(side) 일 때 F(x, f(inner(x))) 의 극한. f 는 pieces 로 정의된 구간별 함수.
+    inner 가 극한값 L 에 어느 쪽에서 다가가는지 수치로 판정해 조각을 고른다.
+    inner 가 L 에서 상수(=L)면 함숫값 조각 pieces_val 이 필요하므로 여기서는 다루지 않는다."""
+    L = limit(inner, x, point, side)
+    eps = Rational(1, 10**6) * (1 if side == '+' else -1)
+    v = inner.subs(x, point + eps)
+    if simplify(v - L) == 0:
+        raise ValueError("inner 가 상수로 L 에 머묾")
+    s = '+' if v > L else '-'
+    e = piece_at(pieces, L, s)
+    return limit(F(e.subs(x, inner)), x, point, side)

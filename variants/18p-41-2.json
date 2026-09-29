@@ -1,0 +1,34 @@
+{
+  "variant_type": "생존 확인형",
+  "type": "객관식",
+  "basis": "3-A 3행 ((가)의 값 2 → 4)",
+  "changed": [
+    "(가)의 극한값 2 → 4"
+  ],
+  "naturalness": "",
+  "stem": "함수 $f(x)=\\begin{cases}x^2-x & (x<2,\\ x\\neq1)\\\\ 3 & (x=1)\\\\ x^2+x & (x\\ge2)\\end{cases}$와 이차함수 $g(x)$가 다음 조건을 만족시킬 때, $g(1)$의 값은?",
+  "box": [
+    "(가) $\\displaystyle\\lim_{x\\to0}\\frac{g(x)}{f(x+1)}=4$",
+    "(나) $\\displaystyle\\lim_{x\\to-1+}f(1-x)g(x)=\\lim_{x\\to1+}f(x+1)g(x)$"
+  ],
+  "choices": [
+    "-6",
+    "-4",
+    "-2",
+    "2",
+    "4"
+  ],
+  "answer": "-4",
+  "trap_answer": null,
+  "trap_path": null,
+  "explanation": [
+    "(가)에서 $g(0)=0$, $g'(0)=4$이므로 $g(x)=x(ax+4)$이다.",
+    "(나): $x\\to-1+$이면 $f(1-x)\\to2$, $x\\to1+$이면 $f(x+1)\\to6$이다.",
+    "$2g(-1)=6g(1)$에서 $2(a-4)=6(a+4)$, $a=-8$이다.",
+    "$g(1)=-8+4=-4$이다."
+  ],
+  "id": "18p-41-2",
+  "origin": "18p-41",
+  "source": "2021년 수능특강 [21009-0022] 변형",
+  "chapter": 1
+}

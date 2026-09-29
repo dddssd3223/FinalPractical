@@ -1,0 +1,30 @@
+{
+  "variant_type": "생존 확인형",
+  "type": "객관식",
+  "basis": "3-A 1행 (극한점 1 → −1, 여전히 x²−1 의 근)",
+  "changed": [
+    "극한점 x→1 → x→−1"
+  ],
+  "naturalness": "",
+  "stem": "삼차함수 $f(x)$와 일차함수 $g(x)$가 모든 실수 $x$에 대하여 $f(x)=2x^3-x^2g(x)-2x$를 만족시킨다. $\\displaystyle\\lim_{x\\to-1}\\frac{g(x)}{f(x)+g(x)}=-\\frac12$일 때, $g(-3)$의 값은?",
+  "choices": [
+    "2",
+    "4",
+    "6",
+    "8",
+    "10"
+  ],
+  "answer": "4",
+  "trap_answer": null,
+  "trap_path": null,
+  "explanation": [
+    "$f(x)+g(x)=2x^3-2x-(x^2-1)g(x)=(x^2-1)\\{2x-g(x)\\}$이다.",
+    "$x\\to-1$에서 분모가 $0$으로 가므로 $g(-1)=0$, $g(x)=p(x+1)$이다.",
+    "극한은 $\\dfrac{p}{(-2)(-2)}=\\dfrac p4=-\\dfrac12$이므로 $p=-2$이다.",
+    "$g(-3)=-2\\times(-2)=4$이다."
+  ],
+  "id": "16p-37-1",
+  "origin": "16p-37",
+  "source": "2022년 수능특강 [22009-0021] 변형",
+  "chapter": 1
+}
