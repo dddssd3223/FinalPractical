@@ -1,0 +1,31 @@
+{
+  "variant_type": "분기 유발형",
+  "type": "객관식",
+  "basis": "3-A 2행 (절댓값 밖 인수 x 의 부호)",
+  "changed": [
+    "f=|x(x−a)| → f=x|x−a|",
+    "첫 극한값 1/2 → −1/2"
+  ],
+  "naturalness": "절댓값 범위를 줄이면 f(x)f(−x) 의 부호가 음이 되어 극한값도 음수여야 함 → 두 번째 변경은 첫 번째의 필연적 결과.",
+  "stem": "양수 $a$에 대하여 함수 $f(x)=x|x-a|$가 $\\displaystyle\\lim_{x\\to0}\\frac{f(x)f(-x)}{x^2}=-\\frac12$을 만족시킬 때, $\\displaystyle\\lim_{x\\to a+}\\frac{f(x)f(-x)}{x-a}$의 값은?",
+  "choices": [
+    "-sqrt(2)",
+    "-sqrt(2)/2",
+    "0",
+    "sqrt(2)/2",
+    "sqrt(2)"
+  ],
+  "answer": "-sqrt(2)/2",
+  "trap_answer": "sqrt(2)/2",
+  "trap_path": "f(−x)=(−x)|−x−a| 의 −x 부호를 빠뜨려 f(x)f(−x)=x²|x−a||x+a| 로 계산 → √2/2.",
+  "explanation": [
+    "$f(-x)=-x|-x-a|=-x|x+a|$이므로 $f(x)f(-x)=-x^2|x-a||x+a|$이다.",
+    "$\\displaystyle\\lim_{x\\to0}\\frac{f(x)f(-x)}{x^2}=-a^2=-\\frac12$에서 $a=\\frac{\\sqrt2}{2}$이다.",
+    "함정: 절댓값 밖의 $-x$ 때문에 부호가 음이 된다. 원문처럼 전부 절댓값이라 보면 부호를 잃는다.",
+    "$x\\to a+$에서 $\\frac{|x-a|}{x-a}=1$이므로 극한은 $-a^2\\cdot2a=-2a^3=-\\frac{\\sqrt2}{2}$이다."
+  ],
+  "id": "11p-24-1",
+  "origin": "11p-24",
+  "source": "2025년 수능완성 [25054-0112] 변형",
+  "chapter": 1
+}
