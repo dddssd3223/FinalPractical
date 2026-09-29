@@ -21,6 +21,7 @@ av = sols[0]
 check("a^2 = 5/2", simplify(av**2 - Rational(5, 2)) == 0)
 Av = at(A, a, av)
 Bv = at(B, a, av)
+check("해설 수치: x_B = 5a", simplify(Bv[0] - 5*av) == 0)
 ans = simplify(dist(O, Av) * dist(Av, Bv))
 print("  OA*AB =", ans)
 data = json.loads((pathlib.Path(__file__).parent.parent / "problems/80p-1.json").read_text())
