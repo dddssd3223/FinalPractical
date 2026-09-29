@@ -19,7 +19,7 @@ CHAPTERS = {1: ("01", "함수의 극한", "함수의<br>극한"), 2: ("02", "함
             3: ("03", "미분계수와 도함수", "미분계수와<br>도함수"), 4: ("04", "도함수의 활용", "도함수의<br>활용")}
 CIRC = "①②③④⑤"
 COL_H = 860          # 해설 단 높이(px): 1123 − top 165 − bottom 26mm(98)
-SAFETY = 0.97        # 글꼴 차이 여유
+SAFETY = 0.95        # 글꼴 차이 여유
 
 
 def section(sid):
@@ -130,6 +130,8 @@ def problem_page(q, label, num, first, ch):
         sec = chapter_text(sec, ch)
         sec = mirror_head(sec, num)
     sec = re.sub(r'id="p0\d"', f'id="q{num:03d}"', sec, count=1)
+    # 본문 오른쪽 끝을 머리띠 문구 오른쪽 끝선(챕터 머리띠 22mm, 일반 18mm)에 맞춤
+    sec = sec.replace("width: 671px", "right: %dmm" % (22 if first else 18))
     return set_num(fill_problem(sec, q, label), num)
 
 
