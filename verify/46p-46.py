@@ -83,3 +83,7 @@ def verify(c):
     g3, jumps = solve_g(W2, [Integer(1), Integer(2)])
     c.check("2: 불연속점 {1, 2}", jumps == [1, 2])
     c.ans(2, f_count(W2, 3) + g3)
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

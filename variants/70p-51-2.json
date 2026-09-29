@@ -15,8 +15,8 @@
     "12"
   ],
   "answer": "-12",
-  "trap_answer": null,
-  "trap_path": null,
+  "trap_answer": "12",
+  "trap_path": "f'(−2)=f'(2)=−3 으로 두어 12 (y축 대칭이면 f' 은 원점 대칭이라 f'(−2)=3).",
   "explanation": [
     "극한은 $\\dfrac{f'(4)\\times(-4)}{f'(-2)}$이다.",
     "$y$축 대칭이므로 $f'(-2)=-f'(2)=3$이다.",

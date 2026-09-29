@@ -89,3 +89,7 @@ def verify(c):
     s, free = candidates(Rational(1, 4), Rational(1, 4), lambda g: [])
     c.check("2: f=x⁴ 유일", s == {x**4})
     c.ans(2, list(s)[0].subs(x, 2))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

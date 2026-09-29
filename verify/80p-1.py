@@ -98,3 +98,7 @@ def verify(c):
     Av, Bv = [tuple(simplify(sympify(p).subs(a, av)) for p in P) for P in (A, B)]
     c.check("2: B가 양의 x축", Bv[0] > 0)
     c.ans(2, simplify(sqrt(Av[0]**2+Av[1]**2) * sqrt((Bv[0]-Av[0])**2 + (Bv[1]-Av[1])**2)))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

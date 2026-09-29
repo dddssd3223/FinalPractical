@@ -69,3 +69,14 @@ def verify(c):
     c.trap(1, amax(4*x**2 + 5, True)[0])
     m, I = amax(4*x**2 + 12, True)
     c.ans(2, m)
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1].update(trap_answer='12', trap_path="f'(x)≤4x²+12 한쪽만 써서 −4≤a≤12 → 12 (절댓값이라 f'≥−(4x²+12) 도 필요).")
+VARS[1]['choices'] = ['2', '4', '6', '8', '12']
+_verify0 = verify
+
+
+def verify(c):
+    _verify0(c)
+    c.trap(2, amax(4*x**2 + 12, False)[0])

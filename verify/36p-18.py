@@ -70,3 +70,7 @@ def verify(c):
     c.trap(1, sum(1 for a in A if all(extrema(a - 1, a + 1))))
     c.ans(2, sum(1 for a in A if all(extrema(a - 2, a + 2))))
     c.check("특이점 밖 구간에서는 연속 (최대·최소 존재)", all(extrema(a - 1, a + 1) == (True, True) for a in (-9, 2, 8)))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

@@ -1,5 +1,6 @@
 """템플릿(수학 교재 내지.dc.html)에 변형문항 데이터만 넣어 챕터별 자료를 만든다.
-- output/ch<N>.dc.html : 챕터 표지 → 문항(한 쪽에 한 문항, 번호 n-1, n-2) → 해설 표지 → 정답 및 해설 → 빠른 정답
+- output/변형문항.dc.html : 챕터마다 표지 → 문항(한 쪽에 한 문항) … 마지막에 해설 표지 → 정답 및 해설 → 빠른 정답 (일괄)
+  문항 번호는 책 전체에서 01 부터 이어짐. drop 표시된 변형(함정 없는 쉬운 변형)은 싣지 않음
 페이지 규칙: 쪽 번호는 책 전체에서 이어지고, 짝수 = 왼쪽 스타일(번호 왼쪽 아래), 홀수 = 오른쪽 스타일(번호 오른쪽 아래),
 챕터 시작 스타일(p04 머리띠)은 챕터의 첫 문항 쪽에만 쓴다. 조건 상자·<보기>·선지는 템플릿 색(#e7c3ce 테두리 등)과 글꼴을 그대로 쓴다.
 해설 쪽은 블록 높이를 브라우저에서 잰 뒤(measure.js) 두 단에 차례로 채워 나눈다."""
@@ -163,19 +164,34 @@ QROW = ('        <span style="font-weight: 700; color: #d2436a;">{}</span><span 
         '<span style="font-weight: 700; color: #d2436a;">{}</span><span style="font-family: \'Noto Serif KR\', serif;">{}</span>')
 
 
-def quick(ch, rows):
-    no, title, _ = CHAPTERS[ch]
-    grids = re.findall(r'(<div style="display: grid; grid-template-columns: 11mm 16mm 11mm 16mm;[^"]*">)\n.*?\n      </div>', QUICK, re.S)
-    g_left, g_right = grids[0], grids[-1]
-    half = (len(rows) + 1)//2
-    fmt = lambda rs: "\n".join(QROW.format(*r) for r in rs)
+def quick(chapter_rows):
+    """chapter_rows: [(ch, [(l1, a1, l2, a2), ...]), ...] → 빠른 정답 한 쪽 (왼쪽 단부터 채우고 넘치면 오른쪽 단)"""
+    grid = re.search(r'<div style="display: grid; grid-template-columns: 11mm 16mm 11mm 16mm;[^"]*">', QUICK).group(0)
     head = QUICK[:QUICK.index('<div style="position: absolute; left: 16mm; right: 16mm; top: 46mm;')]
-    chip = re.search(r'<div style="background: #d2436a; border-radius: 5mm;[^>]*>Chapter 01 <span[^>]*>[^<]*</span></div>', QUICK).group(0)
-    chip = chip.replace("Chapter 01", f"Chapter {no}").replace("함수의 극한과 연속, 미분계수와 도함수", title)
-    body = ('<div style="position: absolute; left: 16mm; right: 16mm; top: 46mm; display: grid; grid-template-columns: 1fr 1fr; gap: 10mm;">\n'
-            '    <div style="display: flex; flex-direction: column; gap: 5mm;">\n      ' + chip + "\n      " + g_left + "\n" + fmt(rows[:half]) + "\n      </div>\n    </div>\n\n"
-            '    <div style="display: flex; flex-direction: column; gap: 5mm;">\n      ' + g_right + "\n" + fmt(rows[half:]) + "\n      </div>\n    </div>\n  </div>\n</section>")
-    return head.replace('id="quick"', f'id="quick{no}"') + body
+    chip0 = re.search(r'<div style="background: #d2436a; border-radius: 5mm;[^>]*>Chapter 01 <span[^>]*>[^<]*</span></div>', QUICK).group(0)
+    CAP = 31  # 한 단에 들어가는 줄 수 (칩 1개 = 2줄)
+    cols, cur, used = [], [], 0
+    for ch, rows in chapter_rows:
+        no, title, _ = CHAPTERS[ch]
+        chip = chip0.replace("Chapter 01", f"Chapter {no}").replace("함수의 극한과 연속, 미분계수와 도함수", title)
+        i = 0
+        while i < len(rows):
+            if used + 3 > CAP:
+                cols.append(cur); cur, used = [], 0
+            take = min(len(rows) - i, CAP - used - (2 if i == 0 else 0))
+            if i == 0:
+                cur.append(chip); used += 2
+            cur.append(grid + "\n" + "\n".join(QROW.format(*r) for r in rows[i:i + take]) + "\n      </div>")
+            used += take; i += take
+    cols.append(cur)
+    cols += [[]]*(len(cols) % 2)
+    pages = []
+    for i in range(0, len(cols), 2):  # 두 단씩 한 쪽
+        body = ('<div style="position: absolute; left: 16mm; right: 16mm; top: 46mm; display: grid; grid-template-columns: 1fr 1fr; gap: 10mm;">\n'
+                + "\n".join('    <div style="display: flex; flex-direction: column; gap: 5mm;">\n      ' + "\n      ".join(c) + "\n    </div>" for c in cols[i:i + 2])
+                + "\n  </div>\n</section>")
+        pages.append(head.replace('id="quick"', f'id="quick{i // 2 + 1}"') + body)
+    return pages
 
 
 def wrap(pages):
@@ -187,16 +203,18 @@ def wrap(pages):
 
 def load():
     vs = [json.loads(p.read_text()) for p in (ROOT / "variants").glob("*.json")]
+    vs = [v for v in vs if not v.get("drop")]
     key = lambda oid: (int(oid.split("p-")[0]), int(oid.split("p-")[1]))
     by_ch = {}
     for v in vs:
         by_ch.setdefault(v["chapter"], {}).setdefault(v["origin"], []).append(v)
-    out = {}
+    out, n = {}, 0
     for ch, d in sorted(by_ch.items()):
         items = []
-        for n, oid in enumerate(sorted(d, key=key), 1):
+        for oid in sorted(d, key=key):
             for v in sorted(d[oid], key=lambda v: v["id"]):
-                items.append((f"{n}-{v['id'].rsplit('-', 1)[1]}", v))
+                n += 1
+                items.append((f"{n:02d}", v))
         out[ch] = items
     return out
 
@@ -221,31 +239,38 @@ def measure(all_blocks):
 
 def main():
     data = load()
-    blocks = {ch: [sol_block(l, q) for l, q in items] for ch, items in data.items()}
-    flat = [b for ch in sorted(blocks) for b in blocks[ch]]
-    hs = measure(flat)
-    k = 0
-    num = 3  # 표지가 3쪽, 첫 문항이 4쪽 (템플릿과 같음)
+    allitems = [(ch, l, q) for ch, items in data.items() for l, q in items]
+    blocks = [sol_block(l, q) for _, l, q in allitems]
+    hs = measure(blocks)
+    pages, num = [], 3  # 표지가 3쪽, 첫 문항이 4쪽 (템플릿과 같음)
     for ch, items in data.items():
-        pages = [cover(ch)]
+        if pages:
+            num += 1
+        pages.append(cover(ch))
         for i, (label, q) in enumerate(items):
             num += 1
             pages.append(problem_page(q, label, num, i == 0, ch))
+        print(f"ch{ch}: 변형 {len(items)}개")
+    num += 1
+    pages.append(SOLCOVER)
+    for idx in paginate(hs):
         num += 1
-        pages.append(SOLCOVER.replace('id="sol-cover"', f'id="solcover{CHAPTERS[ch][0]}"'))
-        chs = hs[k:k + len(items)]; k += len(items)
-        for idx in paginate(chs):
-            num += 1
-            pages.append(solution_page([blocks[ch][i] for i in idx], num))
-        rows = []
-        for j in range(0, len(items), 2):
-            (l1, q1), (l2, q2) = items[j], items[j + 1]
-            rows.append((l1, answer_text(q1), l2, answer_text(q2)))
+        pages.append(solution_page([blocks[i] for i in idx], num))
+    rows = []
+    for ch, items in data.items():
+        flat = [(l, answer_text(q)) for l, q in items]
+        rs = []
+        for j in range(0, len(flat), 2):
+            a = flat[j]; b = flat[j + 1] if j + 1 < len(flat) else ("", "")
+            rs.append((a[0], a[1], b[0], b[1]))
+        rows.append((ch, rs))
+    for qp in quick(rows):
         num += 1
-        pages.append(quick(ch, rows))
-        (OUT / f"ch{ch}.dc.html").write_text(wrap(pages))
-        print(f"ch{ch}: 문항 {len(items)}, 쪽 {len(pages)}, 끝 쪽 {num}")
-        num += 1  # 다음 챕터 표지
+        pages.append(qp)
+    for old in OUT.glob("ch*.dc.html"):
+        old.unlink()
+    (OUT / "변형문항.dc.html").write_text(wrap(pages))
+    print(f"총 변형 {len(allitems)}개, {len(pages)}쪽 (끝 쪽 {num})")
 
 
 if __name__ == "__main__":

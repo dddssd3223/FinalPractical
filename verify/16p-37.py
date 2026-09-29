@@ -78,3 +78,7 @@ def verify(c):
     pp = Symbol('p')
     tp = solve(Eq(pp/(2 - pp), -Rational(1, 2)), pp)[0]
     c.trap(2, tp*(-3))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[0]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

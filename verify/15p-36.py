@@ -76,3 +76,7 @@ def verify(c):
     ft = expand(k*(x + 1)**2 - k*(x - 1)*(x + 1))
     c.check("1: 함정 f 는 (나)의 집합에 −1 을 추가", real_root_set((k*(x + 1)**2 - ft).subs(k, 1)) == {-1, 1})
     c.trap(1, simplify(ft.subs(x, 3)/(k*(x + 1)**2).subs(x, 0)))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

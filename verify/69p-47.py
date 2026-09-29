@@ -76,3 +76,14 @@ def verify(c):
     c.ans(1, solve_f(8, True, 1).subs(x, 1))
     c.trap(1, solve_f(8, False, 1).subs(x, 1))
     c.ans(2, solve_f(6, False, -1).subs(x, 1))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1].update(trap_answer='5', trap_path="극한을 f'(k−3) 으로 보아 합 −10 → f(0)=10 → c=1 → f(1)=5 (양쪽 h 라 2f'(k−3)).")
+VARS[1]['explanation'].insert(-1, "함정: 분자가 $f(a+h)-f(a-h)$이므로 극한은 $f'(a)$가 아니라 $2f'(a)$이다.")
+_verify0 = verify
+
+
+def verify(c):
+    _verify0(c)
+    c.trap(2, (lambda cc: (x**2 - 6*x + 9 + cc).subs(x, 1))(solve(sum(2*(k - 3 - 3) for k in range(1, 11)) + (9 + Symbol('cc')), Symbol('cc'))[0]))

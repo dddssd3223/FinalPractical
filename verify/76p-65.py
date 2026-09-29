@@ -83,3 +83,14 @@ def verify(c):
     c.trap(1, 80*sum(s - {1}))
     s = nondiff((-2, -1), (1, 2))
     c.ans(2, 80*sum(s))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1].update(trap_answer='360', trap_path='f 가 꺾이는 x=1 도 넣어 80(7/2+1)=360 (B 가 곡선 위라 x=1 에서 d_B² 의 기울기가 양쪽 0).')
+VARS[1]['explanation'].insert(-1, '함정: $x=1$에서 $f$는 꺾이지만 B가 곡선 위에 있어 $d_B^2$의 기울기가 양쪽 모두 $0$이다.')
+_verify0 = verify
+
+
+def verify(c):
+    _verify0(c)
+    c.trap(2, 80*(sum(nondiff((-2, -1), (1, 2))) + 1))

@@ -79,3 +79,7 @@ def verify(c):
     ks = k_of(cub2)
     c.check("2: k 하나, 미분가능", ks == [6] and diffable(cub2, 6))
     c.ans(2, ks[0])
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

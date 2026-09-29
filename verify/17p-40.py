@@ -72,3 +72,7 @@ def verify(c):
         c.ans(key, limit(S/(t - t0)**2, t, t0, '+'))
         if key == 1:
             c.trap(1, limit(Rational(3, 2)*PQ2/(t - t0)**2, t, t0, '+'))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

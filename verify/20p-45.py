@@ -77,3 +77,7 @@ def verify(c):
         c.ans(key, G.subs(x, 6))
     F, G = solve_g(4, lambda h: limit(h/x, x, oo))
     c.trap(1, G.subs(x, 6))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

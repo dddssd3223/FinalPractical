@@ -70,3 +70,13 @@ def verify(c):
     v = value(0, 9)
     c.check("2: 자유 계수 무관", not v.free_symbols)
     c.ans(2, v)
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1].update(trap_answer='12', trap_path="f'(−2)=f'(2)=−3 으로 두어 12 (y축 대칭이면 f' 은 원점 대칭이라 f'(−2)=3).")
+_verify0 = verify
+
+
+def verify(c):
+    _verify0(c)
+    c.trap(2, value(1, 9))

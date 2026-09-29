@@ -22,6 +22,7 @@
     "$x_{\\mathrm C}=-x_{\\mathrm A}$이므로 $\\overline{\\mathrm{AH}}-\\overline{\\mathrm{CH}}=-2x_{\\mathrm B}=2(\\sqrt{1+t}-1)$이다.",
     "$\\displaystyle\\lim_{t\\to0+}\\frac{2(\\sqrt{1+t}-1)}{t}=1$이다."
   ],
+  "drop": "생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)",
   "id": "26p-61-2",
   "origin": "26p-61",
   "source": "2023학년도 수능 9월 모의평가 12번 변형",

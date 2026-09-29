@@ -96,3 +96,7 @@ def verify(c):
     cc = Symbol('cc')
     Ft = x**2*(x - 1)**2*(x - cc)
     c.trap(2, Ft.subs(cc, solve(Eq(Ft.subs(x, 3), 36), cc)[0]).subs(x, 4))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[0]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

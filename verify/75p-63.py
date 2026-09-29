@@ -74,3 +74,7 @@ def verify(c):
     v, ok = solve_fp3(lambda f, k: f.subs(x, k + 1) - f.subs(x, k))
     c.check("2: 조건 만족", ok)
     c.ans(2, v)
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

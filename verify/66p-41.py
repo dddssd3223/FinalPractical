@@ -90,3 +90,7 @@ def verify(c):
     c.check("2: 최솟값 경우 하나", len(mins) == 1)
     fp, gp = mins[0]
     c.ans(2, gp.subs(x, fp.subs(x, solve(diff(fp, x), x)[0])))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

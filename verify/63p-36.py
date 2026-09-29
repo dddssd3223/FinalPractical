@@ -66,3 +66,8 @@ def verify(c):
     qv = solve(ft.subs(x, 1) - (ft.subs(x, 3) - ft.subs(x, 1)), q)[0]
     c.trap(1, ft.subs(q, qv).subs(x, 2))
     c.ans(2, solve_f(2, 1).subs(x, 4))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[0]['drop'] = '기울기 2→4 만 바뀌는 쉬운 변형'
+VARS[1]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

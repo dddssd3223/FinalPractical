@@ -94,3 +94,7 @@ def verify(c):
     r = local(3, -4, lambda F, G, u, v: limit(F - G, x, 1))
     c.check("2: 답 유일", len(r) == 1)
     c.ans(2, list(r)[0])
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

@@ -68,3 +68,14 @@ def verify(c):
     c.trap(1, 2*3*3)
     g = good(x + 3, x**2 - x, x - (2*a + 5))
     c.ans(2, prod(g))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1].update(trap_answer='-3', trap_path='f 가 연속인 a=3, −1 만 곱해 −3 (g(a)=0 이면 f 가 끊겨도 fg 는 연속 → a=−5 추가).')
+VARS[1]['explanation'].insert(-1, '함정: $f$가 끊겨도 $g(a)=0$이면 $fg$는 연속이다.')
+_verify0 = verify
+
+
+def verify(c):
+    _verify0(c)
+    c.trap(2, prod(solve(Symbol('t') + 3 - (Symbol('t')**2 - Symbol('t')), Symbol('t'))))

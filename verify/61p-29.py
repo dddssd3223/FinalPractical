@@ -64,3 +64,7 @@ def verify(c):
         c.check(f"{key}: g'({p}) 값이 하나로 결정", len(v) == 1 and not list(v)[0].free_symbols)
         c.ans(key, list(v)[0])
     c.trap(1, solve_gp(1, -2, 6).pop())
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

@@ -73,3 +73,7 @@ def verify(c):
     c.trap(1, min(g.subs(x, 2) for f, g in r1 if expand(f - x*(x + 3)**2) != 0))
     r2 = candidates(x*(x + 3), Rational(1, 3))
     c.ans(2, min(g.subs(x, 2) for f, g in r2))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

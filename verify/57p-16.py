@@ -63,3 +63,14 @@ def verify(c):
     c.ans(1, count(lambda a, b: (x - a)*(x - b), 9))
     c.trap(1, count(lambda a, b: (x - a)*(x - b)**2, 9))
     c.ans(2, count(lambda a, b: (x - a)*(x - b)**2, 10))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1].update(trap_answer='20', trap_path='a=2 인 10쌍과 a=b 인 10쌍을 그냥 더해 20 ((2,2) 가 두 번 세어짐).')
+VARS[1]['explanation'].insert(-1, '함정: $(2,2)$는 두 경우에 모두 들어가므로 한 번 빼야 한다.')
+_verify0 = verify
+
+
+def verify(c):
+    _verify0(c)
+    c.trap(2, len([1 for a in range(1, 11) if a == 2]*10) + len([1 for a in range(1, 11)]))

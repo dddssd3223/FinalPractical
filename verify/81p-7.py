@@ -72,3 +72,8 @@ def verify(c):
     c.ans(1, solve_f(Rational(5, 2), False, 6))
     c.trap(1, solve_f(Rational(5, 2), True, 6))
     c.ans(2, solve_f(Rational(5, 4), True, 4))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[0]['drop'] = '좌우 대칭 이동뿐인 쉬운 변형'
+VARS[1]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

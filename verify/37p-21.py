@@ -59,3 +59,14 @@ def verify(c):
     c.ans(1, sum(1 for k in ks if -2 <= root(k) <= -1))
     c.trap(1, sum(1 for k in ks if -2 < root(k) < -1))
     c.ans(2, sum(1 for k in ks if -3 < root(k) < -2))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1].update(trap_answer='32', trap_path='h(−3)≤0≤h(−2) 로 등호를 넣어 k=20, 51 까지 포함 → 32.')
+VARS[1]['explanation'].insert(-1, '함정: $k=20$, $51$이면 근이 $-2$, $-3$이라 $-3<a_k<-2$에 속하지 않는다.')
+_verify0 = verify
+
+
+def verify(c):
+    _verify0(c)
+    c.trap(2, sum(1 for k in range(1, 101) if -3 <= root(k) <= -2))

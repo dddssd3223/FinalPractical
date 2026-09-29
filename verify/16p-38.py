@@ -71,3 +71,7 @@ def verify(c):
     r = solve_k(2*x**2, lambda Q2, R2: Q2 + R2)
     c.check("2: k 하나", len(r) == 1)
     c.ans(2, list(r)[0])
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

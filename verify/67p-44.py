@@ -89,3 +89,14 @@ def verify(c):
     c.ans(1, v.pop())
     c.trap(1, max(f1_values(24, 'O')))
     c.ans(2, max(f1_values(54, 'O')))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1].update(trap_answer='34', trap_path='B, C 를 양수 쪽 (3, 9) 으로만 잡아 p=−24 → f(1)=34 (음수 쪽 (−3,−9) 이 더 큰 82).')
+VARS[1]['explanation'].insert(-1, '함정: 부호가 음수인 경우 $p=24$가 최댓값을 준다.')
+_verify0 = verify
+
+
+def verify(c):
+    _verify0(c)
+    c.trap(2, min(f1_values(54, 'O')))

@@ -102,3 +102,15 @@ def verify(c):
     v = nondiff(B2, 5)
     c.check("2: {1,3,4}", v == [1, 3, 4])
     c.ans(2, Integer(sum(v)))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1].update(trap_answer='10', trap_path="도형이 꺾이는 x=2 도 포함해 1+2+3+4=10 (x=2 에서는 f' 이 2→2 로 이어짐).")
+VARS[1]['choices'] = ['6', '7', '8', '9', '10']
+VARS[1]['explanation'].insert(-1, "함정: 도형이 꺾이는 $t=2$에서는 $f'$이 $2$에서 $2$로 이어져 미분가능하다.")
+_verify0 = verify
+
+
+def verify(c):
+    _verify0(c)
+    c.trap(2, Integer(sum(nondiff(B2, 5)) + 2))

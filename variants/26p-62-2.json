@@ -22,6 +22,7 @@
     "$\\overline{\\mathrm{PQ}}=(4-t^2)\\sqrt{1+\\frac1{t^2}}=(2-t)(2+t)\\sqrt{1+\\frac1{t^2}}$이다.",
     "$\\displaystyle\\lim_{t\\to2-}\\frac{\\overline{\\mathrm{PQ}}}{2-t}=4\\sqrt{\\frac54}=2\\sqrt5$이다."
   ],
+  "drop": "생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)",
   "id": "26p-62-2",
   "origin": "26p-62",
   "source": "2024학년도 수능 6월 모의평가 11번 변형",

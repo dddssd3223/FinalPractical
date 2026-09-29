@@ -78,3 +78,7 @@ def verify(c):
     s = [av for av in solve(expand((3*x**2 + 2*a*x - 4 - 2*a).subs(x, Rational(4, 3))), a) if mvt_cs(av, 2) == [Rational(4, 3)]]
     c.check("2: a 유일", len(s) == 1)
     c.ans(2, f1(s[0]))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

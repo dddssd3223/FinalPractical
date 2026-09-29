@@ -87,3 +87,7 @@ def verify(c):
     fs2 = admissible(2*x + 3, 12)
     c.check("2: 모두 (x+3)(x²+px+4), |p|<4 (7개)", all(rem(f, x + 3, x) == 0 for f in fs2) and len(fs2) == 7)
     c.ans(2, max(f.subs(x, 1) for f in fs2))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'

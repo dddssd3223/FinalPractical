@@ -75,3 +75,15 @@ def verify(c):
     v = f3_values('>', 6)
     c.check("2: 유일", len(v) == 1)
     c.ans(2, v.pop())
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1].update(trap_answer='3', trap_path="f'(1)=6 의 두 근 중 a=−3 을 택해 f(3)=3 (a=−3 이면 f(0)=−51<0 이라 조건 위반).")
+VARS[1]['explanation'].insert(-1, '함정: $a=-3$이면 $f(0)=3-54<0$이라 조건에 맞지 않는다.')
+_verify0 = verify
+
+
+def verify(c):
+    _verify0(c)
+    a0 = Symbol('a0')
+    c.trap(2, (3 + (x + a0)*(x - a0)*(x - 2*a0)).subs({x: 3, a0: -3}))

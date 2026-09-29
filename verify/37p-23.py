@@ -61,3 +61,14 @@ def verify(c):
     c.ans(1, sum(ns(lambda r: -3 <= r <= -2)))
     c.trap(1, sum(ns(lambda r: -3 < r < -2)))
     c.ans(2, sum(ns(lambda r: -4 < r < -3)))
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1].update(trap_answer='30', trap_path='h(−4)≤0≤h(−3) 로 등호를 넣어 n=8 까지 포함 → 30 (n=8 이면 근이 −4 로 열린구간 밖).')
+VARS[1]['explanation'].insert(-1, '함정: $n=8$이면 근이 정확히 $-4$라 열린구간에 속하지 않는다.')
+_verify0 = verify
+
+
+def verify(c):
+    _verify0(c)
+    c.trap(2, sum(ns(lambda r: -4 <= r < -3)))

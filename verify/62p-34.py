@@ -89,3 +89,15 @@ def verify(c):
     v = g_values(3, [-1, 4])
     c.check("2: 유일", len(v) == 1)
     c.ans(2, v.pop())
+
+
+# ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
+VARS[1].update(trap_answer='8', trap_path="f'−2 의 최고차항 계수를 1 로 두어 (x+1)(x−4) → g(−2)=6+2=8 (f' 의 최고차항 계수는 3).")
+VARS[1]['choices'] = ['8', '12', '16', '20', '24']
+VARS[1]['explanation'].insert(-1, "함정: $f'(x)-2$의 최고차항의 계수는 $1$이 아니라 $3$이다.")
+_verify0 = verify
+
+
+def verify(c):
+    _verify0(c)
+    c.trap(2, ((x + 1)*(x - 4) + 2).subs(x, -2))
