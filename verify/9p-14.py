@@ -91,3 +91,6 @@ def verify(c):
     c.check("2: 후보 밖 극한 존재", ok)
     c.ans(2, sum(bad))
     c.trap(2, sum(naive))
+
+# ── 2차 검토: 원문 풀이 방식이 그대로 통하는 변형 제외 ──
+VARS[1]['drop'] = '구간 확인 누락뿐 — 원문 풀이가 그대로 통함'

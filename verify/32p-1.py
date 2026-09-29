@@ -79,3 +79,6 @@ def verify(c):
     c.check("2: (2,7/3), (2,1/3)", p == {(2, Rational(7, 3)), (2, Rational(1, 3))})
     c.ans(2, max(a + b for a, b in p))
     c.trap(2, min(a + b for a, b in p))
+
+# ── 2차 검토: 원문 풀이 방식이 그대로 통하는 변형 제외 ──
+VARS[1]['drop'] = '한 근 누락뿐 — 원문 풀이가 그대로 통함'

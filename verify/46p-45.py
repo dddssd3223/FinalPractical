@@ -79,3 +79,7 @@ _verify0 = verify
 def verify(c):
     _verify0(c)
     c.trap(2, prod(solve(Symbol('t') + 3 - (Symbol('t')**2 - Symbol('t')), Symbol('t'))))
+
+# ── 2차 검토: 원문 풀이 방식이 그대로 통하는 변형 제외 ──
+VARS[0]['drop'] = '중복 세기뿐 — 원문 풀이가 그대로 통함'
+VARS[1]['drop'] = '생존형: 원문 풀이가 그대로 통하고 함정이 계산 실수 수준'

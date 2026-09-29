@@ -70,3 +70,6 @@ _verify0 = verify
 def verify(c):
     _verify0(c)
     c.trap(2, sum(1 for k in range(1, 101) if -3 <= root(k) <= -2))
+
+# ── 2차 검토: 원문 풀이 방식이 그대로 통하는 변형 제외 ──
+VARS[1]['drop'] = '생존형: 원문 풀이가 그대로 통하고 함정이 계산 실수 수준'

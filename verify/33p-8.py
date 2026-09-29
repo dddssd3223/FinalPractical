@@ -11,7 +11,7 @@ ORIG = dict(
     special="① [1,3] 에서 f>0 확인 — 끝값만 맞추면 1/f 가 구간 안에서 끊길 수 있음. ② 부등식이 엄격(<)이라 경계값을 뺌(원문은 경계가 무리수라 드러나지 않음).",
     perspective="k=f(0) 를 a 로 나타내고 '구간 안 최솟값 >0' 으로 a 범위.",
     table=[
-        ("끝값 f(1)=2, f(3)=6", "경계가 자연수가 되는 경우", "양쪽 1/2 로 두면 a<2 → k<8, 자연수 최댓값 7 (8 은 f 가 x=2 에서 0)"),
+        ("[1,3] 에서 f>0 (판별식은 꼭짓점이 구간 안일 때만 필요)", "꼭짓점이 구간 밖 (a 가 작을 때)", "양 끝 4, 9 로 두고 k 개수를 물으면 판별식이 a≤1/4 쪽을 잘못 잘라 18 (실제 19)"),
         ("이차항 계수 양수", "음수(항상 양수)", "—"),
         ("왼쪽 1/2", "—", "1/4 이면 f(1)=4, a 범위만 바뀜 (생존)"),
     ],
@@ -21,16 +21,18 @@ ORIG = dict(
 VARS = [
     dict(
         variant_type="분기 유발형", type="주관식",
-        basis="3-A 1행 (경계가 자연수 → 엄격부등식이 드러남)",
-        changed=["x>3 조각 1/6 → 1/2"], naturalness="",
-        stem=r"이차항의 계수가 양수인 이차함수 $f(x)$에 대하여 " + G(r"\frac12", r"\frac12") + r"가 실수 전체의 집합에서 연속이다. 함수 $y=f(x)$의 그래프가 $y$축과 만나는 점의 좌표를 $(0,\,k)$라 할 때, 자연수 $k$의 최댓값을 구하시오.",
-        answer="7", trap_answer="8",
-        trap_path="최솟값 조건을 2−a≥0 으로 두어 a=2 포함 → k=8 (이때 f(2)=0 이라 1/f 가 x=2 에서 정의되지 않음).",
+        basis="3-C (꼭짓점이 [1,3] 밖이면 판별식 조건이 필요 없음)",
+        changed=["x<1 조각 1/2 → 1/4", "x>3 조각 1/6 → 1/9", "묻는 값: k 의 최댓값 → 자연수 k 의 개수"],
+        naturalness="최댓값만 물으면 원문처럼 판별식 하나로 풀리므로, 판별식이 너무 세게 자르는 아래쪽(a 가 작을 때)까지 드러나도록 개수를 묻고 양 끝 값을 맞춘 것.",
+        stem=r"이차항의 계수가 양수인 이차함수 $f(x)$에 대하여 " + G(r"\frac14", r"\frac19") + r"가 실수 전체의 집합에서 연속이다. 함수 $y=f(x)$의 그래프가 $y$축과 만나는 점의 좌표를 $(0,\,k)$라 할 때, 가능한 자연수 $k$의 개수를 구하시오.",
+        answer="19", trap_answer="18",
+        trap_path="원문처럼 'f(x)=0 이 실근이 없다' (판별식<0) 로 풀어 1/4<a<25/4 → 9/4<k<81/4 → 3~20 의 18개 (a≤5/4 이면 꼭짓점이 x<1 이라 [1,3] 에서 f≥f(1)=4>0, 판별식과 무관).",
         explanation=[
-            r"연속이려면 $f(1)=f(3)=2$이고 $1\le x\le3$에서 $f(x)>0$이어야 한다.",
-            r"$f(x)=a(x-1)(x-3)+2$ ($a>0$)의 최솟값은 $f(2)=2-a$이므로 $a<2$이다.",
-            r"$k=f(0)=3a+2<8$이다. 함정: $a=2$이면 $f(2)=0$이 되어 $g$가 $x=2$에서 정의되지 않으므로 $k=8$은 불가능하다.",
-            r"$k$는 $8$보다 작은 자연수이고 $a=\frac53$일 때 $k=7$이므로 최댓값은 $7$이다.",
+            r"연속이려면 $f(1)=4$, $f(3)=9$이고 $1\le x\le3$에서 $f(x)>0$이므로 $f(x)=a(x-1)(x-3)+\frac{5x+3}2$ ($a>0$), $k=3a+\frac32$이다.",
+            r"꼭짓점은 $x=2-\frac5{4a}$이다. $a<\frac54$이면 꼭짓점이 $1$보다 왼쪽이라 $[1,3]$에서 $f$는 증가하고 $f\ge f(1)=4>0$이다.",
+            r"$a\ge\frac54$이면 최솟값 $\frac{13}2-a-\frac{25}{16a}>0$에서 $a<\frac{25}4$이다. 따라서 $0<a<\frac{25}4$, $\frac32<k<\frac{81}4$이다.",
+            r"함정: 판별식 $<0$을 쓰면 $a>\frac14$까지 잘라 $k=2$를 놓친다 ($a=\frac16$이면 $k=2$이고 조건을 만족).",
+            r"자연수 $k$는 $2,3,\ldots,20$의 $19$개이다.",
         ],
     ),
     dict(
@@ -75,13 +77,42 @@ def max_nat_k(p, q):
 
 
 def verify(c):
-    for key, p, q in (('orig', 2, 6), (1, 2, 2), (2, 4, 6)):
+    for key, p, q in (('orig', 2, 6), (2, 4, 6)):
         f, a, amax, ksup, kmax, ok_k, ok_sup = max_nat_k(p, q)
         c.check(f"{key}: 최대 k 에서 [1,3] f>0, 상한 a 에서는 f 가 0 에 닿음", ok_k and not ok_sup)
         c.ans(key, kmax)
-    f, a, amax, ksup, *_ = max_nat_k(2, 2)
-    c.trap(1, ksup)
 
 
 # ── 난이도 검토 (함정 없는 쉬운 변형 제외 / 생존형에 실제 함정 경로 추가) ──
 VARS[1]['drop'] = '생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)'
+
+
+def k_range_count(p, q, disc_only):
+    """자연수 k 개수: 실제 조건([1,3] 에서 f>0) 또는 판별식<0 조건"""
+    a = Symbol('a', positive=True)
+    f = a*(x - 1)*(x - 3) + p + Rational(q - p, 2)*(x - 1)
+    k = f.subs(x, 0)
+    cnt = 0
+    for kk in range(1, 200):
+        av = solve(Eq(k, kk), a)
+        if not av or not av[0].is_positive:
+            continue
+        av = av[0]
+        fv = f.subs(a, av)
+        if disc_only:
+            A, B, C = Poly(expand(fv), x).all_coeffs()
+            ok = B**2 - 4*A*C < 0
+        else:
+            pts = [Integer(1), Integer(3)] + [r for r in solve(diff(fv, x), x) if 1 <= r <= 3]
+            ok = min(fv.subs(x, r) for r in pts) > 0
+        cnt += bool(ok)
+    return cnt
+
+
+_verify_base = verify
+
+
+def verify(c):
+    _verify_base(c)
+    c.ans(1, k_range_count(4, 9, False))
+    c.trap(1, k_range_count(4, 9, True))
