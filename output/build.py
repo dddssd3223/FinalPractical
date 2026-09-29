@@ -8,6 +8,8 @@ import html, json, pathlib, re, subprocess, sys, unicodedata
 from sympy import sympify, latex, nsimplify
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from figs import FIGS
+from gichul import G as GICHUL
+import shutil
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "output"
@@ -64,6 +66,8 @@ def tex(s):
 
 
 def answer_text(q):
+    if q.get("answer_display"):
+        return q["answer_display"]
     if q["type"] == "객관식":
         return CIRC[q["choices"].index(q["answer"])]
     return tex(q["answer"])
@@ -79,7 +83,9 @@ CHOICES = '<div style="display: grid; grid-template-columns: repeat(5, 1fr); gap
 
 def body_html(q):
     parts = [f'<p style="margin: 0; font-size: 15px; line-height: 2.1;">{esc(q["stem"])}</p>']
-    if q["id"] in FIGS:  # 그림 (도형·그래프 문항)
+    if q.get("fig"):  # 기출: 원본에서 잘라 낸 그림
+        parts.append(f'<div style="align-self: center;"><img src="figs/{q["fig"]}.png" style="max-width: 82mm; max-height: 62mm;"></div>')
+    elif q["id"] in FIGS:  # 그림 (도형·그래프 문항)
         parts.append('<div style="align-self: center;">' + FIGS[q["id"]]() + "</div>")
     if q.get("box"):
         parts.append(BOX.format("".join(f'<p style="margin: 0;">{esc(l)}</p>' for l in q["box"])))
@@ -99,11 +105,20 @@ def fill_problem(sec, q, label):
     return sec[:head_end] + "\n    " + body_html(q) + sec[body_end:]
 
 
+HEAD_R = "display: flex; align-items: center; justify-content: flex-end; padding-right: 18mm; box-sizing: border-box;"
+HEAD_L = "display: flex; align-items: center; justify-content: flex-start; padding-left: 18mm; box-sizing: border-box;"
+
+
+def mirror_head(sec, num):
+    """짝수(왼쪽) 쪽은 머리띠 문구를 왼쪽으로 — 쪽마다 좌우 번갈아"""
+    return sec.replace(HEAD_R, HEAD_L) if num % 2 == 0 else sec
+
+
 def problem_page(q, label, num, first, ch):
     if first:  # 챕터 시작 스타일 (p04)
         sec = P04
         sec = sec.replace('flex: 0 0 auto;">01</span>', 'flex: 0 0 auto;">%s</span>' % CHAPTERS[ch][0])
-        sec = sub1(r'(letter-spacing: -0.01em;">)[^<]*(</span></div></div>)', r'\g<1>%s 변형문항\2' % CHAPTERS[ch][1], sec)
+        sec = sub1(r'(letter-spacing: -0.01em;">)[^<]*(</span></div></div>)', r'\g<1>%s\2' % CHAPTERS[ch][1], sec)
         sec = sec.replace("height: 451px", "")  # 본문 높이 고정 해제 (긴 문항)
         if num % 2 == 1:  # 홀수 쪽: 오른쪽 스타일 꼬리말
             sec = sec.replace(FOOT_L, P05_NUM).replace(P04_TXT_R, P05_TXT)
@@ -113,6 +128,7 @@ def problem_page(q, label, num, first, ch):
         if num % 2 == 0:  # 왼쪽 스타일: 번호 왼쪽 아래, 챕터 문구 오른쪽 아래
             sec = sec.replace(P05_NUM, FOOT_L).replace(P05_TXT, P05_TXT.replace("left: 20mm", "right: 20mm"))
         sec = chapter_text(sec, ch)
+        sec = mirror_head(sec, num)
     sec = re.sub(r'id="p0\d"', f'id="q{num:03d}"', sec, count=1)
     return set_num(fill_problem(sec, q, label), num)
 
@@ -137,6 +153,7 @@ def solution_page(blocks, num):
     if num % 2 == 0:
         num_block = re.search(r'\n  <div style="position: absolute; right: 0; bottom: 14mm;.*?\n  </div>', sec, re.S).group(0)
         sec = sec.replace(num_block, FOOT_L).replace("left: 18mm; bottom: 15mm; font-family", "right: 18mm; bottom: 15mm; font-family")
+    sec = mirror_head(sec, num)
     sec = sec.replace('id="sol"', f'id="s{num:03d}"')
     return set_num(sec, num)
 
@@ -160,7 +177,7 @@ def paginate(heights):
 def cover(ch):
     no, _, big = CHAPTERS[ch]
     sec = COVER.replace('line-height: 0.9;">01</span>', f'line-height: 0.9;">{no}</span>')
-    sec = sub1(r'(letter-spacing: -0.02em;">)강남3구<br>부교재 <br>연계문항<br><br>(</div>)', r'\g<1>%s<br>변형문항\2' % big, sec)
+    sec = sub1(r'(letter-spacing: -0.02em;">)강남3구<br>부교재 <br>연계문항<br><br>(</div>)', r'\g<1>%s\2' % big, sec)
     return sec.replace('id="ch01-cover"', f'id="cover{no}"')
 
 
@@ -173,7 +190,7 @@ def quick(chapter_rows):
     grid = re.search(r'<div style="display: grid; grid-template-columns: 11mm 16mm 11mm 16mm;[^"]*">', QUICK).group(0)
     head = QUICK[:QUICK.index('<div style="position: absolute; left: 16mm; right: 16mm; top: 46mm;')]
     chip0 = re.search(r'<div style="background: #d2436a; border-radius: 5mm;[^>]*>Chapter 01 <span[^>]*>[^<]*</span></div>', QUICK).group(0)
-    CAP = 31  # 한 단에 들어가는 줄 수 (칩 1개 = 2줄)
+    CAP = 30  # 한 단에 들어가는 줄 수 (칩 1개 = 2줄)
     cols, cur, used = [], [], 0
     for ch, rows in chapter_rows:
         no, title, _ = CHAPTERS[ch]
@@ -231,12 +248,15 @@ def wrap(pages):
 
 
 def load():
+    """변형 + 학교 기출. 기출은 짝 원문의 마지막 번호 뒤에 n-1, n-2 …, 짝이 없으면 단원 맨 뒤에 새 번호."""
     vs = [json.loads(p.read_text()) for p in (ROOT / "variants").glob("*.json")]
     vs = [v for v in vs if not v.get("drop")]
     key = lambda oid: (int(oid.split("p-")[0]), int(oid.split("p-")[1]))
     by_ch = {}
     for v in vs:
         by_ch.setdefault(v["chapter"], {}).setdefault(v["origin"], []).append(v)
+    for g in GICHUL:
+        by_ch.setdefault(g["chapter"], {})
     out, n = {}, 0
     for ch, d in sorted(by_ch.items()):
         items = []
@@ -244,8 +264,24 @@ def load():
             for v in sorted(d[oid], key=lambda v: v["id"]):
                 n += 1
                 items.append((f"{n:02d}", v))
+            base = n
+            for j, g in enumerate([g for g in GICHUL if g["attach"] == oid], 1):
+                items.append((f"{base:02d}-{j}", g))
+        for g in [g for g in GICHUL if g["chapter"] == ch and g["attach"] is None]:
+            n += 1
+            items.append((f"{n:02d}", g))
         out[ch] = items
+    attached = {g["attach"] for g in GICHUL if g["attach"]}
+    have = {v["origin"] for v in vs}
+    assert attached <= have, attached - have
     return out
+
+
+def memo():
+    """빈 쪽 (MEMO) — 챕터 표지를 홀수 쪽에 맞출 때"""
+    head = QUICK[:QUICK.index('<div style="position: absolute; left: 16mm; right: 16mm; top: 46mm;')].replace("빠른 정답", "MEMO")
+    lines = "".join(f'<div style="height: 1px; background: #f3c6d5; margin-top: 13mm;"></div>' for _ in range(16))
+    return head.replace('id="quick"', 'id="memo"') + f'<div style="position: absolute; left: 18mm; right: 18mm; top: 46mm;">{lines}</div>\n</section>'
 
 
 def measure(all_blocks):
@@ -271,16 +307,19 @@ def main():
     allitems = [(ch, l, q) for ch, items in data.items() for l, q in items]
     blocks = [sol_block(l, q) for _, l, q in allitems]
     hs = measure(blocks)
-    pages, num = [None], 1  # 1쪽 목차(나중에 채움), 2쪽부터 챕터 표지
+    pages, num = [None, memo()], 2  # 1쪽 목차(나중에 채움), 2쪽 MEMO, 3쪽 챕터 표지, 4쪽 첫 문항 (템플릿과 같음)
     toc = []
     for ch, items in data.items():
+        if (num + 1) % 2 == 0:  # 챕터 표지는 홀수(오른쪽) 쪽, 첫 문항은 짝수 쪽
+            num += 1
+            pages.append(memo())
         num += 1
         pages.append(cover(ch))
         toc.append((f"Chapter {CHAPTERS[ch][0]}", CHAPTERS[ch][1], num))
         for i, (label, q) in enumerate(items):
             num += 1
             pages.append(problem_page(q, label, num, i == 0, ch))
-        print(f"ch{ch}: 변형 {len(items)}개")
+        print(f"ch{ch}: {len(items)}문항 (기출 {sum(1 for _, q in items if q['id'].startswith('G-'))})")
     num += 1
     pages.append(SOLCOVER)
     toc.append(("", "정답 및 해설", num))
@@ -289,7 +328,7 @@ def main():
         pages.append(solution_page([blocks[i] for i in idx], num))
     rows = []
     for ch, items in data.items():
-        flat = [(l, answer_text(q)) for l, q in items]
+        flat = [(l, tex(q["answer"]) if q.get("answer_display") else answer_text(q)) for l, q in items]  # 서술형은 최종 답만
         rs = []
         for j in range(0, len(flat), 2):
             a = flat[j]; b = flat[j + 1] if j + 1 < len(flat) else ("", "")
@@ -302,7 +341,9 @@ def main():
         old.unlink()
     pages[0] = contents(toc)
     (OUT / "변형문항.dc.html").write_text(brand(wrap(pages)))
-    print(f"총 변형 {len(allitems)}개, {len(pages)}쪽 (끝 쪽 {num})")
+    figs = OUT / "figs"
+    figs.mkdir(exist_ok=True)
+    print(f"총 {len(allitems)}문항, {len(pages)}쪽 (끝 쪽 {num})")
 
 
 if __name__ == "__main__":
