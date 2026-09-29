@@ -110,12 +110,12 @@ HEAD_L = "display: flex; align-items: center; justify-content: flex-start; paddi
 
 
 def mirror_head(sec, num):
-    """짝수(왼쪽) 쪽은 머리띠 문구를 왼쪽으로 — 쪽마다 좌우 번갈아"""
-    return sec.replace(HEAD_R, HEAD_L) if num % 2 == 0 else sec
+    """머리띠 문구 위치는 템플릿 그대로 (좌우 반전 안 함)"""
+    return sec
 
 
 def problem_page(q, label, num, first, ch):
-    if first:  # 챕터 시작 스타일 (p04)
+    if first:  # 챕터 머리띠 스타일 (p04) — 챕터 첫 쪽부터 한 쪽씩 걸러
         sec = P04
         sec = sec.replace('flex: 0 0 auto;">01</span>', 'flex: 0 0 auto;">%s</span>' % CHAPTERS[ch][0])
         sec = sub1(r'(letter-spacing: -0.01em;">)[^<]*(</span></div></div>)', r'\g<1>%s\2' % CHAPTERS[ch][1], sec)
@@ -316,7 +316,7 @@ def main():
         toc.append((f"Chapter {CHAPTERS[ch][0]}", CHAPTERS[ch][1], num))
         for i, (label, q) in enumerate(items):
             num += 1
-            pages.append(problem_page(q, label, num, i == 0, ch))
+            pages.append(problem_page(q, label, num, i % 2 == 0, ch))  # 챕터 머리띠 쪽과 일반 쪽을 번갈아
         print(f"ch{ch}: {len(items)}문항 (기출 {sum(1 for _, q in items if q['id'].startswith('G-'))})")
     num += 1
     pages.append(SOLCOVER)
