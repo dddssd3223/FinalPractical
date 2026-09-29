@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+@font-face { font-family: "Aggro"; src: url("../aggro-l.otf") format("opentype"); font-weight: 300; font-display: swap; }
+@font-face { font-family: "Aggro"; src: url("../aggro-m.otf") format("opentype"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Aggro"; src: url("../aggro-b.otf") format("opentype"); font-weight: 700; font-display: swap; }
+doc-page:not(:defined) { visibility: hidden; }
+body { margin: 0; }
+a { color: #d2436a; text-decoration: none; }
+a:hover { color: #b8325a; }
+.katex { font-size: 1.02em; }
+</style>
+<script src="../doc-page.js"></script>
+</helmet>
+
+<doc-page size="a4" style="position: absolute; left: 500px; top: -49px">
+
+<section class="page" id="cover04" data-screen-label="02 챕터 표지" style="background: #d2547c; font-family: 'Aggro', sans-serif; color: #ffffff; position: relative; overflow: hidden;">
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 180mm; overflow: hidden;">
+    <div style="position: absolute; left: -34mm; bottom: -34mm; width: 138mm; height: 138mm; border-radius: 50%; border: 1px solid rgba(255,255,255,0.45);"></div>
+    <div style="position: absolute; left: -16mm; bottom: -16mm; width: 102mm; height: 102mm; border-radius: 50%; border: 1px solid rgba(255,255,255,0.32);"></div>
+    <div style="position: absolute; left: 2mm; bottom: 2mm; width: 66mm; height: 66mm; border-radius: 50%; background: rgba(255,255,255,0.12);"></div>
+    <div style="position: absolute; left: 19mm; bottom: 19mm; width: 32mm; height: 32mm; border-radius: 50%; background: rgba(255,255,255,0.18);"></div>
+    <div style="position: absolute; left: 0; right: 0; bottom: 74mm; height: 44mm; background: repeating-linear-gradient(90deg, rgba(255,255,255,0.20) 0 1px, transparent 1px 9mm);"></div>
+    <div style="position: absolute; left: 0; right: 0; bottom: 118mm; height: 1px; background: rgba(255,255,255,0.28);"></div>
+    <div style="position: absolute; left: 0; right: 0; bottom: 74mm; height: 1px; background: rgba(255,255,255,0.28);"></div>
+    <div style="position: absolute; right: 26mm; bottom: 92mm; width: 7mm; height: 7mm; border-radius: 50%; background: rgba(255,255,255,0.55);"></div>
+    <div style="position: absolute; right: 58mm; bottom: 46mm; width: 26mm; height: 26mm; border: 1px solid rgba(255,255,255,0.4); transform: rotate(45deg);"></div>
+  </div>
+  <div style="position: absolute; top: 157px; width: 120mm; display: flex; flex-direction: column; align-items: flex-end; gap: 6mm; left: 265px">
+    <div style="display: flex; align-items: baseline; gap: 5mm;">
+      <span style="font-weight: 500; font-size: 14px; letter-spacing: 0.3em;">CHAPTER</span>
+      <span style="font-weight: 700; font-size: 54px; line-height: 0.9;">04</span>
+    </div>
+    <div style="width: 78mm; height: 1px; background: rgba(255,255,255,0.75);"></div>
+    <div style="font-weight: 700; font-size: 46px; line-height: 1.18; text-align: right; letter-spacing: -0.02em;">도함수의<br>활용<br>변형문항</div>
+  </div>
+  <div style="position: absolute; right: 20mm; bottom: 16mm; font-size: 13px; opacity: 0.85;"><span style="font-weight: 300;">프랙티컬</span> <span style="font-weight: 700;">미적분I</span></div>
+</section>
+
+<section class="page" id="q223" data-screen-label="03 문제(장 시작)" style="background: #ffffff; font-family: 'Noto Serif KR', serif; color: #1e1a1b; position: relative; overflow: hidden;">
+  <div style="position: absolute; left: 0; right: 0; top: 0; height: 99px; background: #fdf2f6;"><div style="position: absolute; left: 0px; right: 0px; top: 43px; height: 77px; background: #d2436a; display: flex; align-items: center; justify-content: flex-end; padding-right: 22mm; box-sizing: border-box"><div style="position: absolute; left: 127px; top: 0px; width: 151px; height: 77px; background: #ea8fb0; border-top-right-radius: 11mm; border-bottom-right-radius: 11mm"></div><div style="position: absolute; left: -45px; top: 0px; width: 293px; height: 77px; background: #f5aecb; border-top-right-radius: 11mm; border-bottom-right-radius: 11mm"></div><div style="position: absolute; left: -23px; top: -36px; width: 237px; height: 90px; background: #cf406a; border-top-right-radius: 15mm; border-bottom-right-radius: 15mm; box-shadow: 0 0 0 1.1mm #ffffff; display: flex; align-items: center; gap: 4mm; padding-left: 11mm; padding-right: 7mm; box-sizing: border-box; white-space: nowrap">
+    <span style="font-family: Aggro, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.18em; color: rgb(255, 255, 255); flex: 0 0 auto;">&nbsp; &nbsp; CHAPTER</span>
+    <span style="font-family: Aggro, sans-serif; font-weight: 500; font-size: 40px; line-height: 1; color: rgb(255, 255, 255); flex: 0 0 auto;">04</span>
+  </div><span style="font-family: 'Aggro', sans-serif; font-weight: 500; font-size: 22px; color: #ffffff; letter-spacing: -0.01em;">도함수의 활용 변형문항</span></div></div>
+  
+  
+  
+  
+  <div style="position: absolute; left: -71px; top: 72px; height: 31mm; display: none;">
+  </div>
+  
+  <div style="position: absolute; left: 69px; top: 165px; display: flex; flex-direction: column; gap: 7mm; width: 671px; ">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 6mm;">
+      <div style="width: 15mm; height: 15mm; border-radius: 50%; background: #d2436a; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 15px; color: #ffffff; letter-spacing: 0.02em; flex: none;">1-1</div>
+      <span style="font-family: 'Aggro', sans-serif; font-weight: 300; font-size: 11px; color: #8e888c; letter-spacing: -0.01em; text-align: right;">2024학년도 대수능 20번 변형</span>
+    </div>
+    <p style="margin: 0; font-size: 15px; line-height: 2.1;">양수 $a$에 대하여 함수 $f(x)=-x^3+ax^2+2x$라 하자. 곡선 $y=f(x)$ 위의 점 $\mathrm{O}(0,\,0)$에서의 접선이 곡선 $y=f(x)$와 만나는 점 중 $\mathrm{O}$가 아닌 점을 $\mathrm{A}$라 하고, 곡선 $y=f(x)$ 위의 점 $\mathrm{A}$에서의 접선이 $y$축과 만나는 점을 $\mathrm{B}$라 하자. 삼각형 $\mathrm{OAB}$가 직각삼각형이 되도록 하는 모든 $a$의 값에 대하여 삼각형 $\mathrm{OAB}$의 넓이의 합을 $S$라 할 때, $8S$의 값을 구하시오.</p>
+  </div>
+
+  <div style="position: absolute; right: 0; bottom: 14mm; display: flex; align-items: center;">
+    <div style="width: 14mm; height: 8mm; background: #f3aec5; border-top-left-radius: 4mm; border-bottom-left-radius: 4mm; margin-right: 1.5mm;"></div>
+    <div style="width: 22mm; height: 8mm; background: #d2436a; border-top-left-radius: 4mm; border-bottom-left-radius: 4mm; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 12px; color: #ffffff;">223</div>
+  </div>
+  <div style="position: absolute; left: 20mm; bottom: 15mm; font-family: 'Aggro', sans-serif; font-size: 11px; color: #e9799e;"><span style="font-weight: 700;">CHAPTER 4</span> <span style="font-weight: 300;">도함수의 활용</span></div>
+</section>
+
+<section class="page" id="q224" data-screen-label="04 문제(왼쪽)" style="background: #ffffff; font-family: 'Noto Serif KR', serif; color: #1e1a1b; position: relative; overflow: hidden;">
+  <div style="position: absolute; left: 0; right: 0; top: 0; height: 43px; background: #fdf2f6;"></div>
+  <div style="position: absolute; left: 0; right: 0; top: 43px; height: 62px; background: #d2436a; display: flex; align-items: center; justify-content: flex-end; padding-right: 18mm; box-sizing: border-box;">
+    <span style="font-family: 'Aggro', sans-serif; font-size: 13px; color: #ffffff;"><span style="font-weight: 300;">프랙티컬</span> <span style="font-weight: 700;">수학Ⅱ</span></span>
+  </div>
+  <div style="position: absolute; left: 0; right: 0; top: 105px; height: 15px; background: #f7c9da;"></div>
+
+  <div style="position: absolute; left: 69px; top: 165px; width: 671px; display: flex; flex-direction: column; gap: 7mm;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 6mm;">
+      <div style="width: 15mm; height: 15mm; border-radius: 50%; background: #d2436a; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 15px; color: #ffffff; flex: none;">1-2</div>
+      <span style="font-family: 'Aggro', sans-serif; font-weight: 300; font-size: 11px; color: #8e888c; letter-spacing: -0.01em; text-align: right;">2024학년도 대수능 20번 변형</span>
+    </div>
+    <p style="margin: 0; font-size: 15px; line-height: 2.1;">$a&gt;\sqrt3$인 실수 $a$에 대하여 함수 $f(x)=-x^3+ax^2+3x$라 하자. 곡선 $y=f(x)$ 위의 점 $\mathrm{O}(0,\,0)$에서의 접선이 곡선 $y=f(x)$와 만나는 점 중 $\mathrm{O}$가 아닌 점을 $\mathrm{A}$라 하고, 곡선 $y=f(x)$ 위의 점 $\mathrm{A}$에서의 접선이 $x$축과 만나는 점을 $\mathrm{B}$라 하자. 점 $\mathrm{A}$가 선분 $\mathrm{OB}$를 지름으로 하는 원 위의 점일 때, $\overline{\mathrm{OA}}\times\overline{\mathrm{AB}}$의 값을 구하시오.</p>
+  </div>
+
+  <div style="position: absolute; right: 20mm; bottom: 15mm; font-family: 'Aggro', sans-serif; font-size: 11px; color: #e9799e;"><span style="font-weight: 700;">CHAPTER 4</span> <span style="font-weight: 300;">도함수의 활용</span></div>
+  <div style="position: absolute; left: 0; bottom: 14mm; display: flex; align-items: center;">
+    <div style="width: 22mm; height: 8mm; background: #d2436a; border-top-right-radius: 4mm; border-bottom-right-radius: 4mm; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 12px; color: #ffffff;">224</div>
+    <div style="width: 14mm; height: 8mm; background: #f3aec5; border-top-right-radius: 4mm; border-bottom-right-radius: 4mm; margin-left: 1.5mm;"></div>
+  </div>
+</section>
+
+<section class="page" id="q225" data-screen-label="04 문제(왼쪽)" style="background: #ffffff; font-family: 'Noto Serif KR', serif; color: #1e1a1b; position: relative; overflow: hidden;">
+  <div style="position: absolute; left: 0; right: 0; top: 0; height: 43px; background: #fdf2f6;"></div>
+  <div style="position: absolute; left: 0; right: 0; top: 43px; height: 62px; background: #d2436a; display: flex; align-items: center; justify-content: flex-end; padding-right: 18mm; box-sizing: border-box;">
+    <span style="font-family: 'Aggro', sans-serif; font-size: 13px; color: #ffffff;"><span style="font-weight: 300;">프랙티컬</span> <span style="font-weight: 700;">수학Ⅱ</span></span>
+  </div>
+  <div style="position: absolute; left: 0; right: 0; top: 105px; height: 15px; background: #f7c9da;"></div>
+
+  <div style="position: absolute; left: 69px; top: 165px; width: 671px; display: flex; flex-direction: column; gap: 7mm;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 6mm;">
+      <div style="width: 15mm; height: 15mm; border-radius: 50%; background: #d2436a; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 15px; color: #ffffff; flex: none;">2-1</div>
+      <span style="font-family: 'Aggro', sans-serif; font-weight: 300; font-size: 11px; color: #8e888c; letter-spacing: -0.01em; text-align: right;">2025년 수능특강 [25009-0081] 변형</span>
+    </div>
+    <p style="margin: 0; font-size: 15px; line-height: 2.1;">함수 $f(x)=x^3+ax^2+bx$가 다음 조건을 만족시킬 때, $f(1)$의 값은? (단, $a$, $b$는 상수이다.)</p>
+    <div style="border: 1px solid #e7c3ce; padding: 4mm 6mm; font-size: 15px; line-height: 2.0;"><p style="margin: 0;">(가) 닫힌구간 $[0,\,3]$에서 평균값 정리를 만족시키는 모든 상수 $c$의 값의 합은 $1$이다.</p><p style="margin: 0;">(나) $f'(3)=0$</p></div>
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4mm; font-size: 15px;">
+      <span>① $- \frac{37}{2}$</span><span>② $-4$</span><span>③ $0$</span><span>④ $4$</span><span>⑤ $8$</span>
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 20mm; bottom: 15mm; font-family: 'Aggro', sans-serif; font-size: 11px; color: #e9799e;"><span style="font-weight: 700;">CHAPTER 4</span> <span style="font-weight: 300;">도함수의 활용</span></div>
+  <div style="position: absolute; right: 0; bottom: 14mm; display: flex; align-items: center;">
+    <div style="width: 14mm; height: 8mm; background: #f3aec5; border-top-left-radius: 4mm; border-bottom-left-radius: 4mm; margin-right: 1.5mm;"></div>
+    <div style="width: 22mm; height: 8mm; background: #d2436a; border-top-left-radius: 4mm; border-bottom-left-radius: 4mm; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 12px; color: #ffffff;">225</div>
+  </div>
+</section>
+
+<section class="page" id="q226" data-screen-label="04 문제(왼쪽)" style="background: #ffffff; font-family: 'Noto Serif KR', serif; color: #1e1a1b; position: relative; overflow: hidden;">
+  <div style="position: absolute; left: 0; right: 0; top: 0; height: 43px; background: #fdf2f6;"></div>
+  <div style="position: absolute; left: 0; right: 0; top: 43px; height: 62px; background: #d2436a; display: flex; align-items: center; justify-content: flex-end; padding-right: 18mm; box-sizing: border-box;">
+    <span style="font-family: 'Aggro', sans-serif; font-size: 13px; color: #ffffff;"><span style="font-weight: 300;">프랙티컬</span> <span style="font-weight: 700;">수학Ⅱ</span></span>
+  </div>
+  <div style="position: absolute; left: 0; right: 0; top: 105px; height: 15px; background: #f7c9da;"></div>
+
+  <div style="position: absolute; left: 69px; top: 165px; width: 671px; display: flex; flex-direction: column; gap: 7mm;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 6mm;">
+      <div style="width: 15mm; height: 15mm; border-radius: 50%; background: #d2436a; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 15px; color: #ffffff; flex: none;">2-2</div>
+      <span style="font-family: 'Aggro', sans-serif; font-weight: 300; font-size: 11px; color: #8e888c; letter-spacing: -0.01em; text-align: right;">2025년 수능특강 [25009-0081] 변형</span>
+    </div>
+    <p style="margin: 0; font-size: 15px; line-height: 2.1;">함수 $f(x)=x^3+ax^2+bx$가 다음 조건을 만족시킬 때, $f(1)$의 값은? (단, $a$, $b$는 상수이다.)</p>
+    <div style="border: 1px solid #e7c3ce; padding: 4mm 6mm; font-size: 15px; line-height: 2.0;"><p style="margin: 0;">(가) 닫힌구간 $[0,\,2]$에서 평균값 정리를 만족시키는 상수 $c$의 값은 $\frac43$이다.</p><p style="margin: 0;">(나) $f'(3)=0$</p></div>
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4mm; font-size: 15px;">
+      <span>① $-18$</span><span>② $-17$</span><span>③ $-16$</span><span>④ $-15$</span><span>⑤ $-14$</span>
+    </div>
+  </div>
+
+  <div style="position: absolute; right: 20mm; bottom: 15mm; font-family: 'Aggro', sans-serif; font-size: 11px; color: #e9799e;"><span style="font-weight: 700;">CHAPTER 4</span> <span style="font-weight: 300;">도함수의 활용</span></div>
+  <div style="position: absolute; left: 0; bottom: 14mm; display: flex; align-items: center;">
+    <div style="width: 22mm; height: 8mm; background: #d2436a; border-top-right-radius: 4mm; border-bottom-right-radius: 4mm; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 12px; color: #ffffff;">226</div>
+    <div style="width: 14mm; height: 8mm; background: #f3aec5; border-top-right-radius: 4mm; border-bottom-right-radius: 4mm; margin-left: 1.5mm;"></div>
+  </div>
+</section>
+
+<section class="page" id="q227" data-screen-label="04 문제(왼쪽)" style="background: #ffffff; font-family: 'Noto Serif KR', serif; color: #1e1a1b; position: relative; overflow: hidden;">
+  <div style="position: absolute; left: 0; right: 0; top: 0; height: 43px; background: #fdf2f6;"></div>
+  <div style="position: absolute; left: 0; right: 0; top: 43px; height: 62px; background: #d2436a; display: flex; align-items: center; justify-content: flex-end; padding-right: 18mm; box-sizing: border-box;">
+    <span style="font-family: 'Aggro', sans-serif; font-size: 13px; color: #ffffff;"><span style="font-weight: 300;">프랙티컬</span> <span style="font-weight: 700;">수학Ⅱ</span></span>
+  </div>
+  <div style="position: absolute; left: 0; right: 0; top: 105px; height: 15px; background: #f7c9da;"></div>
+
+  <div style="position: absolute; left: 69px; top: 165px; width: 671px; display: flex; flex-direction: column; gap: 7mm;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 6mm;">
+      <div style="width: 15mm; height: 15mm; border-radius: 50%; background: #d2436a; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 15px; color: #ffffff; flex: none;">3-1</div>
+      <span style="font-family: 'Aggro', sans-serif; font-weight: 300; font-size: 11px; color: #8e888c; letter-spacing: -0.01em; text-align: right;">2022년 수능완성 [22054-0132] 변형</span>
+    </div>
+    <p style="margin: 0; font-size: 15px; line-height: 2.1;">함수 $f(x)=x^3-2x$에 대하여 곡선 $y=f(x)$ 위의 점 $\mathrm A(-1,\,1)$에서의 접선이 이 곡선과 만나는 점 중 $\mathrm A$가 아닌 점을 $\mathrm B(b,\,f(b))$라 하자. 직선 $x=k\ (-1&lt;k\le0)$가 곡선 $y=f(x)$와 만나는 점을 $\mathrm P_k$라 할 때, 삼각형 $\mathrm{AP}_k\mathrm B$의 넓이의 최댓값은?</p>
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4mm; font-size: 15px;">
+      <span>① $3$</span><span>② $4$</span><span>③ $5$</span><span>④ $\frac{11}{2}$</span><span>⑤ $6$</span>
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 20mm; bottom: 15mm; font-family: 'Aggro', sans-serif; font-size: 11px; color: #e9799e;"><span style="font-weight: 700;">CHAPTER 4</span> <span style="font-weight: 300;">도함수의 활용</span></div>
+  <div style="position: absolute; right: 0; bottom: 14mm; display: flex; align-items: center;">
+    <div style="width: 14mm; height: 8mm; background: #f3aec5; border-top-left-radius: 4mm; border-bottom-left-radius: 4mm; margin-right: 1.5mm;"></div>
+    <div style="width: 22mm; height: 8mm; background: #d2436a; border-top-left-radius: 4mm; border-bottom-left-radius: 4mm; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 12px; color: #ffffff;">227</div>
+  </div>
+</section>
+
+<section class="page" id="q228" data-screen-label="04 문제(왼쪽)" style="background: #ffffff; font-family: 'Noto Serif KR', serif; color: #1e1a1b; position: relative; overflow: hidden;">
+  <div style="position: absolute; left: 0; right: 0; top: 0; height: 43px; background: #fdf2f6;"></div>
+  <div style="position: absolute; left: 0; right: 0; top: 43px; height: 62px; background: #d2436a; display: flex; align-items: center; justify-content: flex-end; padding-right: 18mm; box-sizing: border-box;">
+    <span style="font-family: 'Aggro', sans-serif; font-size: 13px; color: #ffffff;"><span style="font-weight: 300;">프랙티컬</span> <span style="font-weight: 700;">수학Ⅱ</span></span>
+  </div>
+  <div style="position: absolute; left: 0; right: 0; top: 105px; height: 15px; background: #f7c9da;"></div>
+
+  <div style="position: absolute; left: 69px; top: 165px; width: 671px; display: flex; flex-direction: column; gap: 7mm;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 6mm;">
+      <div style="width: 15mm; height: 15mm; border-radius: 50%; background: #d2436a; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 15px; color: #ffffff; flex: none;">3-2</div>
+      <span style="font-family: 'Aggro', sans-serif; font-weight: 300; font-size: 11px; color: #8e888c; letter-spacing: -0.01em; text-align: right;">2022년 수능완성 [22054-0132] 변형</span>
+    </div>
+    <p style="margin: 0; font-size: 15px; line-height: 2.1;">함수 $f(x)=x^3-2x$에 대하여 곡선 $y=f(x)$ 위의 점 $\mathrm A(-2,\,-4)$에서의 접선이 이 곡선과 만나는 점 중 $\mathrm A$가 아닌 점을 $\mathrm B(b,\,f(b))$라 하자. 직선 $x=k\ (-2&lt;k&lt;b)$가 곡선 $y=f(x)$와 만나는 점을 $\mathrm P_k$라 할 때, 삼각형 $\mathrm{AP}_k\mathrm B$의 넓이의 최댓값은?</p>
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4mm; font-size: 15px;">
+      <span>① $80$</span><span>② $88$</span><span>③ $96$</span><span>④ $104$</span><span>⑤ $112$</span>
+    </div>
+  </div>
+
+  <div style="position: absolute; right: 20mm; bottom: 15mm; font-family: 'Aggro', sans-serif; font-size: 11px; color: #e9799e;"><span style="font-weight: 700;">CHAPTER 4</span> <span style="font-weight: 300;">도함수의 활용</span></div>
+  <div style="position: absolute; left: 0; bottom: 14mm; display: flex; align-items: center;">
+    <div style="width: 22mm; height: 8mm; background: #d2436a; border-top-right-radius: 4mm; border-bottom-right-radius: 4mm; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 12px; color: #ffffff;">228</div>
+    <div style="width: 14mm; height: 8mm; background: #f3aec5; border-top-right-radius: 4mm; border-bottom-right-radius: 4mm; margin-left: 1.5mm;"></div>
+  </div>
+</section>
+
+<section class="page" id="q229" data-screen-label="04 문제(왼쪽)" style="background: #ffffff; font-family: 'Noto Serif KR', serif; color: #1e1a1b; position: relative; overflow: hidden;">
+  <div style="position: absolute; left: 0; right: 0; top: 0; height: 43px; background: #fdf2f6;"></div>
+  <div style="position: absolute; left: 0; right: 0; top: 43px; height: 62px; background: #d2436a; display: flex; align-items: center; justify-content: flex-end; padding-right: 18mm; box-sizing: border-box;">
+    <span style="font-family: 'Aggro', sans-serif; font-size: 13px; color: #ffffff;"><span style="font-weight: 300;">프랙티컬</span> <span style="font-weight: 700;">수학Ⅱ</span></span>
+  </div>
+  <div style="position: absolute; left: 0; right: 0; top: 105px; height: 15px; background: #f7c9da;"></div>
+
+  <div style="position: absolute; left: 69px; top: 165px; width: 671px; display: flex; flex-direction: column; gap: 7mm;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 6mm;">
+      <div style="width: 15mm; height: 15mm; border-radius: 50%; background: #d2436a; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 15px; color: #ffffff; flex: none;">4-1</div>
+      <span style="font-family: 'Aggro', sans-serif; font-weight: 300; font-size: 11px; color: #8e888c; letter-spacing: -0.01em; text-align: right;">2023년 수능완성 [23054-0130] 변형</span>
+    </div>
+    <p style="margin: 0; font-size: 15px; line-height: 2.1;">다음 조건을 만족시키는 모든 다항함수 $f(x)$에 대하여 $f(2)$의 최댓값을 $M$, 최솟값을 $m$이라 할 때, $M-m$의 값은?</p>
+    <div style="border: 1px solid #e7c3ce; padding: 4mm 6mm; font-size: 15px; line-height: 2.0;"><p style="margin: 0;">(가) $f(4)=10$</p><p style="margin: 0;">(나) $2&lt;x&lt;4$인 모든 실수 $x$에 대하여 $-2\le f'(x)\le6$이다.</p></div>
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4mm; font-size: 15px;">
+      <span>① $12$</span><span>② $16$</span><span>③ $20$</span><span>④ $24$</span><span>⑤ $28$</span>
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 20mm; bottom: 15mm; font-family: 'Aggro', sans-serif; font-size: 11px; color: #e9799e;"><span style="font-weight: 700;">CHAPTER 4</span> <span style="font-weight: 300;">도함수의 활용</span></div>
+  <div style="position: absolute; right: 0; bottom: 14mm; display: flex; align-items: center;">
+    <div style="width: 14mm; height: 8mm; background: #f3aec5; border-top-left-radius: 4mm; border-bottom-left-radius: 4mm; margin-right: 1.5mm;"></div>
+    <div style="width: 22mm; height: 8mm; background: #d2436a; border-top-left-radius: 4mm; border-bottom-left-radius: 4mm; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 12px; color: #ffffff;">229</div>
+  </div>
+</section>
+
+<section class="page" id="q230" data-screen-label="04 문제(왼쪽)" style="background: #ffffff; font-family: 'Noto Serif KR', serif; color: #1e1a1b; position: relative; overflow: hidden;">
+  <div style="position: absolute; left: 0; right: 0; top: 0; height: 43px; background: #fdf2f6;"></div>
+  <div style="position: absolute; left: 0; right: 0; top: 43px; height: 62px; background: #d2436a; display: flex; align-items: center; justify-content: flex-end; padding-right: 18mm; box-sizing: border-box;">
+    <span style="font-family: 'Aggro', sans-serif; font-size: 13px; color: #ffffff;"><span style="font-weight: 300;">프랙티컬</span> <span style="font-weight: 700;">수학Ⅱ</span></span>
+  </div>
+  <div style="position: absolute; left: 0; right: 0; top: 105px; height: 15px; background: #f7c9da;"></div>
+
+  <div style="position: absolute; left: 69px; top: 165px; width: 671px; display: flex; flex-direction: column; gap: 7mm;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 6mm;">
+      <div style="width: 15mm; height: 15mm; border-radius: 50%; background: #d2436a; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 15px; color: #ffffff; flex: none;">4-2</div>
+      <span style="font-family: 'Aggro', sans-serif; font-weight: 300; font-size: 11px; color: #8e888c; letter-spacing: -0.01em; text-align: right;">2023년 수능완성 [23054-0130] 변형</span>
+    </div>
+    <p style="margin: 0; font-size: 15px; line-height: 2.1;">다음 조건을 만족시키는 모든 다항함수 $f(x)$에 대하여 $f(2)$의 최댓값을 $M$, 최솟값을 $m$이라 할 때, $M-m$의 값은?</p>
+    <div style="border: 1px solid #e7c3ce; padding: 4mm 6mm; font-size: 15px; line-height: 2.0;"><p style="margin: 0;">(가) $f(4)=10$</p><p style="margin: 0;">(나) $2&lt;x&lt;4$인 모든 실수 $x$에 대하여 $|f'(x)|\le5$이다.</p></div>
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4mm; font-size: 15px;">
+      <span>① $16$</span><span>② $18$</span><span>③ $20$</span><span>④ $22$</span><span>⑤ $24$</span>
+    </div>
+  </div>
+
+  <div style="position: absolute; right: 20mm; bottom: 15mm; font-family: 'Aggro', sans-serif; font-size: 11px; color: #e9799e;"><span style="font-weight: 700;">CHAPTER 4</span> <span style="font-weight: 300;">도함수의 활용</span></div>
+  <div style="position: absolute; left: 0; bottom: 14mm; display: flex; align-items: center;">
+    <div style="width: 22mm; height: 8mm; background: #d2436a; border-top-right-radius: 4mm; border-bottom-right-radius: 4mm; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 12px; color: #ffffff;">230</div>
+    <div style="width: 14mm; height: 8mm; background: #f3aec5; border-top-right-radius: 4mm; border-bottom-right-radius: 4mm; margin-left: 1.5mm;"></div>
+  </div>
+</section>
+
+<section class="page" id="q231" data-screen-label="04 문제(왼쪽)" style="background: #ffffff; font-family: 'Noto Serif KR', serif; color: #1e1a1b; position: relative; overflow: hidden;">
+  <div style="position: absolute; left: 0; right: 0; top: 0; height: 43px; background: #fdf2f6;"></div>
+  <div style="position: absolute; left: 0; right: 0; top: 43px; height: 62px; background: #d2436a; display: flex; align-items: center; justify-content: flex-end; padding-right: 18mm; box-sizing: border-box;">
+    <span style="font-family: 'Aggro', sans-serif; font-size: 13px; color: #ffffff;"><span style="font-weight: 300;">프랙티컬</span> <span style="font-weight: 700;">수학Ⅱ</span></span>
+  </div>
+  <div style="position: absolute; left: 0; right: 0; top: 105px; height: 15px; background: #f7c9da;"></div>
+
+  <div style="position: absolute; left: 69px; top: 165px; width: 671px; display: flex; flex-direction: column; gap: 7mm;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 6mm;">
+      <div style="width: 15mm; height: 15mm; border-radius: 50%; background: #d2436a; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 15px; color: #ffffff; flex: none;">5-1</div>
+      <span style="font-family: 'Aggro', sans-serif; font-weight: 300; font-size: 11px; color: #8e888c; letter-spacing: -0.01em; text-align: right;">2025년 수능완성 [25054-0143] 변형</span>
+    </div>
+    <p style="margin: 0; font-size: 15px; line-height: 2.1;">최고차항의 계수가 양수인 삼차함수 $f(x)$에 대하여 곡선 $y=f(x)$와 직선 $y=\frac12x$가 서로 다른 세 점 $\mathrm O$, $\mathrm A$, $\mathrm B$에서 만난다. 곡선 $y=f(x)$ 위의 점 $\mathrm A$에서의 접선이 $x$축과 만나는 점을 $\mathrm C$라 하자. $\overline{\mathrm{OA}}=\overline{\mathrm{AB}}$이고 $\overline{\mathrm{OC}}=\overline{\mathrm{BC}}=\frac52$일 때, $f(6)$의 값을 구하시오. (단, 점 $\mathrm A$의 $x$좌표는 음수이고, $\mathrm O$는 원점이다.)</p>
+  </div>
+
+  <div style="position: absolute; left: 20mm; bottom: 15mm; font-family: 'Aggro', sans-serif; font-size: 11px; color: #e9799e;"><span style="font-weight: 700;">CHAPTER 4</span> <span style="font-weight: 300;">도함수의 활용</span></div>
+  <div style="position: absolute; right: 0; bottom: 14mm; display: flex; align-items: center;">
+    <div style="width: 14mm; height: 8mm; background: #f3aec5; border-top-left-radius: 4mm; border-bottom-left-radius: 4mm; margin-right: 1.5mm;"></div>
+    <div style="width: 22mm; height: 8mm; background: #d2436a; border-top-left-radius: 4mm; border-bottom-left-radius: 4mm; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 12px; color: #ffffff;">231</div>
+  </div>
+</section>
+
+<section class="page" id="q232" data-screen-label="04 문제(왼쪽)" style="background: #ffffff; font-family: 'Noto Serif KR', serif; color: #1e1a1b; position: relative; overflow: hidden;">
+  <div style="position: absolute; left: 0; right: 0; top: 0; height: 43px; background: #fdf2f6;"></div>
+  <div style="position: absolute; left: 0; right: 0; top: 43px; height: 62px; background: #d2436a; display: flex; align-items: center; justify-content: flex-end; padding-right: 18mm; box-sizing: border-box;">
+    <span style="font-family: 'Aggro', sans-serif; font-size: 13px; color: #ffffff;"><span style="font-weight: 300;">프랙티컬</span> <span style="font-weight: 700;">수학Ⅱ</span></span>
+  </div>
+  <div style="position: absolute; left: 0; right: 0; top: 105px; height: 15px; background: #f7c9da;"></div>
+
+  <div style="position: absolute; left: 69px; top: 165px; width: 671px; display: flex; flex-direction: column; gap: 7mm;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 6mm;">
+      <div style="width: 15mm; height: 15mm; border-radius: 50%; background: #d2436a; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 15px; color: #ffffff; flex: none;">5-2</div>
+      <span style="font-family: 'Aggro', sans-serif; font-weight: 300; font-size: 11px; color: #8e888c; letter-spacing: -0.01em; text-align: right;">2025년 수능완성 [25054-0143] 변형</span>
+    </div>
+    <p style="margin: 0; font-size: 15px; line-height: 2.1;">최고차항의 계수가 양수인 삼차함수 $f(x)$에 대하여 곡선 $y=f(x)$와 직선 $y=\frac12x$가 서로 다른 세 점 $\mathrm O$, $\mathrm A$, $\mathrm B$에서 만난다. 곡선 $y=f(x)$ 위의 점 $\mathrm A$에서의 접선이 $x$축과 만나는 점을 $\mathrm C$라 하자. $\overline{\mathrm{OA}}=\overline{\mathrm{AB}}$이고 $\overline{\mathrm{OC}}=\overline{\mathrm{BC}}=\frac54$일 때, $f(4)$의 값을 구하시오. (단, 점 $\mathrm A$의 $x$좌표는 양수이고, $\mathrm O$는 원점이다.)</p>
+  </div>
+
+  <div style="position: absolute; right: 20mm; bottom: 15mm; font-family: 'Aggro', sans-serif; font-size: 11px; color: #e9799e;"><span style="font-weight: 700;">CHAPTER 4</span> <span style="font-weight: 300;">도함수의 활용</span></div>
+  <div style="position: absolute; left: 0; bottom: 14mm; display: flex; align-items: center;">
+    <div style="width: 22mm; height: 8mm; background: #d2436a; border-top-right-radius: 4mm; border-bottom-right-radius: 4mm; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 12px; color: #ffffff;">232</div>
+    <div style="width: 14mm; height: 8mm; background: #f3aec5; border-top-right-radius: 4mm; border-bottom-right-radius: 4mm; margin-left: 1.5mm;"></div>
+  </div>
+</section>
+
+<section class="page" id="q233" data-screen-label="04 문제(왼쪽)" style="background: #ffffff; font-family: 'Noto Serif KR', serif; color: #1e1a1b; position: relative; overflow: hidden;">
+  <div style="position: absolute; left: 0; right: 0; top: 0; height: 43px; background: #fdf2f6;"></div>
+  <div style="position: absolute; left: 0; right: 0; top: 43px; height: 62px; background: #d2436a; display: flex; align-items: center; justify-content: flex-end; padding-right: 18mm; box-sizing: border-box;">
+    <span style="font-family: 'Aggro', sans-serif; font-size: 13px; color: #ffffff;"><span style="font-weight: 300;">프랙티컬</span> <span style="font-weight: 700;">수학Ⅱ</span></span>
+  </div>
+  <div style="position: absolute; left: 0; right: 0; top: 105px; height: 15px; background: #f7c9da;"></div>
+
+  <div style="position: absolute; left: 69px; top: 165px; width: 671px; display: flex; flex-direction: column; gap: 7mm;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 6mm;">
+      <div style="width: 15mm; height: 15mm; border-radius: 50%; background: #d2436a; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 15px; color: #ffffff; flex: none;">6-1</div>
+      <span style="font-family: 'Aggro', sans-serif; font-weight: 300; font-size: 11px; color: #8e888c; letter-spacing: -0.01em; text-align: right;">2024년 수능완성 [24054-0116] 변형</span>
+    </div>
+    <p style="margin: 0; font-size: 15px; line-height: 2.1;">두 함수 $f(x)=x^3-3x^2+2x+a$, $g(x)=x^2+bx+c$가 다음 조건을 만족시킬 때, $|abc|$의 값은? (단, $a$, $b$, $c$는 상수이다.)</p>
+    <div style="border: 1px solid #e7c3ce; padding: 4mm 6mm; font-size: 15px; line-height: 2.0;"><p style="margin: 0;">(가) 두 곡선 $y=f(x)$, $y=g(x)$가 점 $\mathrm A(2,\,2)$에서 만난다.</p><p style="margin: 0;">(나) 곡선 $y=f(x)$ 위의 점 $\mathrm A$에서의 접선과 곡선 $y=g(x)$ 위의 점 $\mathrm A$에서의 접선이 서로 수직이다.</p></div>
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4mm; font-size: 15px;">
+      <span>① $45$</span><span>② $54$</span><span>③ $63$</span><span>④ $120$</span><span>⑤ $126$</span>
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 20mm; bottom: 15mm; font-family: 'Aggro', sans-serif; font-size: 11px; color: #e9799e;"><span style="font-weight: 700;">CHAPTER 4</span> <span style="font-weight: 300;">도함수의 활용</span></div>
+  <div style="position: absolute; right: 0; bottom: 14mm; display: flex; align-items: center;">
+    <div style="width: 14mm; height: 8mm; background: #f3aec5; border-top-left-radius: 4mm; border-bottom-left-radius: 4mm; margin-right: 1.5mm;"></div>
+    <div style="width: 22mm; height: 8mm; background: #d2436a; border-top-left-radius: 4mm; border-bottom-left-radius: 4mm; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 12px; color: #ffffff;">233</div>
+  </div>
+</section>
+
+<section class="page" id="q234" data-screen-label="04 문제(왼쪽)" style="background: #ffffff; font-family: 'Noto Serif KR', serif; color: #1e1a1b; position: relative; overflow: hidden;">
+  <div style="position: absolute; left: 0; right: 0; top: 0; height: 43px; background: #fdf2f6;"></div>
+  <div style="position: absolute; left: 0; right: 0; top: 43px; height: 62px; background: #d2436a; display: flex; align-items: center; justify-content: flex-end; padding-right: 18mm; box-sizing: border-box;">
+    <span style="font-family: 'Aggro', sans-serif; font-size: 13px; color: #ffffff;"><span style="font-weight: 300;">프랙티컬</span> <span style="font-weight: 700;">수학Ⅱ</span></span>
+  </div>
+  <div style="position: absolute; left: 0; right: 0; top: 105px; height: 15px; background: #f7c9da;"></div>
+
+  <div style="position: absolute; left: 69px; top: 165px; width: 671px; display: flex; flex-direction: column; gap: 7mm;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 6mm;">
+      <div style="width: 15mm; height: 15mm; border-radius: 50%; background: #d2436a; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 15px; color: #ffffff; flex: none;">6-2</div>
+      <span style="font-family: 'Aggro', sans-serif; font-weight: 300; font-size: 11px; color: #8e888c; letter-spacing: -0.01em; text-align: right;">2024년 수능완성 [24054-0116] 변형</span>
+    </div>
+    <p style="margin: 0; font-size: 15px; line-height: 2.1;">두 함수 $f(x)=x^3-3x^2+2x+a$, $g(x)=x^2+bx+c$가 다음 조건을 만족시킬 때, $|abc|$의 값은? (단, $a$, $b$, $c$는 상수이다.)</p>
+    <div style="border: 1px solid #e7c3ce; padding: 4mm 6mm; font-size: 15px; line-height: 2.0;"><p style="margin: 0;">(가) 두 곡선 $y=f(x)$, $y=g(x)$가 점 $\mathrm A(1,\,3)$에서 만난다.</p><p style="margin: 0;">(나) 곡선 $y=f(x)$ 위의 점 $\mathrm A$에서의 접선과 곡선 $y=g(x)$ 위의 점 $\mathrm A$에서의 접선이 서로 수직이다.</p></div>
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4mm; font-size: 15px;">
+      <span>① $3$</span><span>② $6$</span><span>③ $9$</span><span>④ $12$</span><span>⑤ $15$</span>
+    </div>
+  </div>
+
+  <div style="position: absolute; right: 20mm; bottom: 15mm; font-family: 'Aggro', sans-serif; font-size: 11px; color: #e9799e;"><span style="font-weight: 700;">CHAPTER 4</span> <span style="font-weight: 300;">도함수의 활용</span></div>
+  <div style="position: absolute; left: 0; bottom: 14mm; display: flex; align-items: center;">
+    <div style="width: 22mm; height: 8mm; background: #d2436a; border-top-right-radius: 4mm; border-bottom-right-radius: 4mm; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 12px; color: #ffffff;">234</div>
+    <div style="width: 14mm; height: 8mm; background: #f3aec5; border-top-right-radius: 4mm; border-bottom-right-radius: 4mm; margin-left: 1.5mm;"></div>
+  </div>
+</section>
+
+<section class="page" id="solcover04" data-screen-label="06 해설 표지" style="background: #c93f66; font-family: 'Aggro', sans-serif; color: #ffffff; position: relative; overflow: hidden;">
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 180mm; overflow: hidden;">
+    <div style="position: absolute; right: -34mm; bottom: -34mm; width: 138mm; height: 138mm; border-radius: 50%; border: 1px solid rgba(255,255,255,0.45);"></div>
+    <div style="position: absolute; right: -16mm; bottom: -16mm; width: 102mm; height: 102mm; border-radius: 50%; border: 1px solid rgba(255,255,255,0.32);"></div>
+    <div style="position: absolute; right: 2mm; bottom: 2mm; width: 66mm; height: 66mm; border-radius: 50%; background: rgba(255,255,255,0.12);"></div>
+    <div style="position: absolute; right: 19mm; bottom: 19mm; width: 32mm; height: 32mm; border-radius: 50%; background: rgba(255,255,255,0.18);"></div>
+    <div style="position: absolute; left: 0; right: 0; bottom: 74mm; height: 44mm; background: repeating-linear-gradient(90deg, rgba(255,255,255,0.20) 0 1px, transparent 1px 9mm);"></div>
+    <div style="position: absolute; left: 0; right: 0; bottom: 118mm; height: 1px; background: rgba(255,255,255,0.28);"></div>
+    <div style="position: absolute; left: 0; right: 0; bottom: 74mm; height: 1px; background: rgba(255,255,255,0.28);"></div>
+    <div style="position: absolute; left: 26mm; bottom: 92mm; width: 7mm; height: 7mm; border-radius: 50%; background: rgba(255,255,255,0.55);"></div>
+    <div style="position: absolute; left: 58mm; bottom: 46mm; width: 26mm; height: 26mm; border: 1px solid rgba(255,255,255,0.4); transform: rotate(45deg);"></div>
+  </div>
+  <div style="position: absolute; left: 20mm; top: 40mm; width: 120mm; display: flex; flex-direction: column; gap: 6mm;">
+    <span style="font-weight: 500; font-size: 14px; letter-spacing: 0.3em;">ANSWER &amp; SOLUTION</span>
+    <div style="width: 78mm; height: 1px; background: rgba(255,255,255,0.75);"></div>
+    <div style="font-weight: 700; font-size: 46px; line-height: 1.18; letter-spacing: -0.02em;">정답 및<br>해설</div>
+  </div>
+  <div style="position: absolute; left: 20mm; bottom: 16mm; font-size: 13px; opacity: 0.85;"><span style="font-weight: 300;">프랙티컬</span> <span style="font-weight: 700;">수학Ⅱ</span></div>
+</section>
+
+<section class="page" id="s236" data-screen-label="07 정답 및 해설" style="background: #ffffff; font-family: 'Noto Serif KR', serif; color: #1e1a1b; position: relative; overflow: hidden;">
+  <div style="position: absolute; left: 0; right: 0; top: 0; height: 43px; background: #fdf2f6;"></div>
+  <div style="position: absolute; left: 0; right: 0; top: 43px; height: 62px; background: #d2436a; display: flex; align-items: center; justify-content: flex-end; padding-right: 18mm; box-sizing: border-box;">
+    <span style="font-family: 'Aggro', sans-serif; font-size: 13px; color: #ffffff;"><span style="font-weight: 300;">프랙티컬</span> <span style="font-weight: 700;">수학Ⅱ</span></span>
+  </div>
+  <div style="position: absolute; left: 0; right: 0; top: 105px; height: 15px; background: #f7c9da;"></div>
+
+  <div style="position: absolute; left: 18mm; right: 18mm; top: 165px; bottom: 26mm; column-count: 2; column-fill: auto; column-gap: 12mm; font-size: 13px; line-height: 2.0;">
+    <div style="break-inside: avoid; margin-bottom: 4mm;">
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 17px; color: #d2436a; margin-bottom: 3mm;">1-1</div>
+      <div style="display: flex; align-items: center; gap: 3mm; margin-bottom: 3mm;">
+        <span style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #e9799e; padding: 1mm 3mm; border-radius: 1.2mm;">정답</span>
+        <span style="font-size: 14px;">$41$</span>
+      </div>
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #f3aec5; padding: 1mm 3mm; border-radius: 1.2mm; display: inline-block; margin-bottom: 2mm;">해설</div>
+      <p style="margin: 0;">O에서의 접선은 $y=2x$이고 $x^2(x-a)=0$에서 $\mathrm{A}(a,\,2a)$, $f'(a)=2-a^2$이다.</p>
+      <p style="margin: 0;">A에서의 접선의 $y$절편은 $a^3$이므로 $\mathrm{B}(0,\,a^3)$이고, OA의 기울기가 $2$라 $\angle\mathrm{O}\neq 90^\circ$이다.</p>
+      <p style="margin: 0;">(i) $\angle\mathrm{A}=90^\circ$: $2(2-a^2)=-1$, $a^2=\tfrac52$, 넓이 $\tfrac{a^4}{2}=\tfrac{25}{8}$</p>
+      <p style="margin: 0;">(ii) $\angle\mathrm{B}=90^\circ$: $f'(a)=0$, $a=\sqrt2$, 넓이 $\tfrac12\cdot 2\sqrt2\cdot\sqrt2=2$</p>
+      <p style="margin: 0;">함정: 원문은 $a&gt;\sqrt2$와 $x$축으로 (ii)를 막아 두었지만 $y$축에서는 수평 접선도 B를 만든다.</p>
+      <p style="margin: 0;">$S=\tfrac{25}{8}+2=\tfrac{41}{8}$이므로 $8S=41$이다.</p>
+    </div>
+    <div style="break-inside: avoid; margin-bottom: 4mm;">
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 17px; color: #d2436a; margin-bottom: 3mm;">1-2</div>
+      <div style="display: flex; align-items: center; gap: 3mm; margin-bottom: 3mm;">
+        <span style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #e9799e; padding: 1mm 3mm; border-radius: 1.2mm;">정답</span>
+        <span style="font-size: 14px;">$100$</span>
+      </div>
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #f3aec5; padding: 1mm 3mm; border-radius: 1.2mm; display: inline-block; margin-bottom: 2mm;">해설</div>
+      <p style="margin: 0;">O에서의 접선은 $y=3x$이고 $x^2(x-a)=0$에서 $\mathrm{A}(a,\,3a)$이다.</p>
+      <p style="margin: 0;">$f'(a)=3-a^2$이고 $\angle\mathrm{OAB}=90^\circ$이므로 $3(3-a^2)=-1$, $a^2=\tfrac{10}{3}$이다.</p>
+      <p style="margin: 0;">B의 $x$좌표는 $a-\dfrac{3a}{3-a^2}=10a$이다.</p>
+      <p style="margin: 0;">$\overline{\mathrm{OA}}\times\overline{\mathrm{AB}}=\overline{\mathrm{OB}}\times 3a=30a^2=100$이다.</p>
+    </div>
+    <div style="break-inside: avoid; margin-bottom: 4mm;">
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 17px; color: #d2436a; margin-bottom: 3mm;">2-1</div>
+      <div style="display: flex; align-items: center; gap: 3mm; margin-bottom: 3mm;">
+        <span style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #e9799e; padding: 1mm 3mm; border-radius: 1.2mm;">정답</span>
+        <span style="font-size: 14px;">④</span>
+      </div>
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #f3aec5; padding: 1mm 3mm; border-radius: 1.2mm; display: inline-block; margin-bottom: 2mm;">해설</div>
+      <p style="margin: 0;">평균변화율은 $\frac{f(3)-f(0)}3=9+3a+b$이므로 $3c^2+2ac-9-3a=0$을 만족시키는 $0&lt;c&lt;3$이 $c$이다.</p>
+      <p style="margin: 0;">함정: 두 근의 합 $-\frac{2a}3=1$로 두면 $a=-\frac32$인데, 이때 두 근의 곱이 음수라 한 근은 구간 밖이고 남은 근의 합이 $1$이 아니다.</p>
+      <p style="margin: 0;">근이 하나만 구간 안이고 그 값이 $1$이면 $3+2a-9-3a=0$, $a=-6$이고 다른 근은 $3$(끝점)이라 조건을 만족한다.</p>
+      <p style="margin: 0;">(나)에서 $27-36+b=0$, $b=9$이므로 $f(1)=1-6+9=4$이다.</p>
+    </div>
+    <div style="break-inside: avoid; margin-bottom: 4mm;">
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 17px; color: #d2436a; margin-bottom: 3mm;">2-2</div>
+      <div style="display: flex; align-items: center; gap: 3mm; margin-bottom: 3mm;">
+        <span style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #e9799e; padding: 1mm 3mm; border-radius: 1.2mm;">정답</span>
+        <span style="font-size: 14px;">③</span>
+      </div>
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #f3aec5; padding: 1mm 3mm; border-radius: 1.2mm; display: inline-block; margin-bottom: 2mm;">해설</div>
+      <p style="margin: 0;">$3c^2+2ac-4-2a=0$에 $c=\frac43$을 넣으면 $\frac{16}3+\frac{8a}3-4-2a=0$, $a=-2$이다 (다른 근 $0$은 끝점).</p>
+      <p style="margin: 0;">(나)에서 $27-12+b=0$, $b=-15$이다.</p>
+      <p style="margin: 0;">$f(1)=1-2-15=-16$이다.</p>
+    </div>
+  </div>
+
+  <div style="position: absolute; right: 18mm; bottom: 15mm; font-family: 'Aggro', sans-serif; font-weight: 300; font-size: 11px; color: #e9799e;">정답 및 해설</div>
+  <div style="position: absolute; left: 0; bottom: 14mm; display: flex; align-items: center;">
+    <div style="width: 22mm; height: 8mm; background: #d2436a; border-top-right-radius: 4mm; border-bottom-right-radius: 4mm; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 12px; color: #ffffff;">236</div>
+    <div style="width: 14mm; height: 8mm; background: #f3aec5; border-top-right-radius: 4mm; border-bottom-right-radius: 4mm; margin-left: 1.5mm;"></div>
+  </div>
+</section>
+
+<section class="page" id="s237" data-screen-label="07 정답 및 해설" style="background: #ffffff; font-family: 'Noto Serif KR', serif; color: #1e1a1b; position: relative; overflow: hidden;">
+  <div style="position: absolute; left: 0; right: 0; top: 0; height: 43px; background: #fdf2f6;"></div>
+  <div style="position: absolute; left: 0; right: 0; top: 43px; height: 62px; background: #d2436a; display: flex; align-items: center; justify-content: flex-end; padding-right: 18mm; box-sizing: border-box;">
+    <span style="font-family: 'Aggro', sans-serif; font-size: 13px; color: #ffffff;"><span style="font-weight: 300;">프랙티컬</span> <span style="font-weight: 700;">수학Ⅱ</span></span>
+  </div>
+  <div style="position: absolute; left: 0; right: 0; top: 105px; height: 15px; background: #f7c9da;"></div>
+
+  <div style="position: absolute; left: 18mm; right: 18mm; top: 165px; bottom: 26mm; column-count: 2; column-fill: auto; column-gap: 12mm; font-size: 13px; line-height: 2.0;">
+    <div style="break-inside: avoid; margin-bottom: 4mm;">
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 17px; color: #d2436a; margin-bottom: 3mm;">3-1</div>
+      <div style="display: flex; align-items: center; gap: 3mm; margin-bottom: 3mm;">
+        <span style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #e9799e; padding: 1mm 3mm; border-radius: 1.2mm;">정답</span>
+        <span style="font-size: 14px;">①</span>
+      </div>
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #f3aec5; padding: 1mm 3mm; border-radius: 1.2mm; display: inline-block; margin-bottom: 2mm;">해설</div>
+      <p style="margin: 0;">접선은 $y=x+2$이고 $x^3-3x-2=(x+1)^2(x-2)$이므로 $\mathrm B(2,4)$이다.</p>
+      <p style="margin: 0;">넓이는 $\frac12\times3\times\{(k+2)-f(k)\}=\frac32(-k^3+3k+2)$이다.</p>
+      <p style="margin: 0;">함정: $-k^3+3k+2$는 $k=1$에서 최대이지만 범위 $-1&lt;k\le0$에서는 증가하므로 $k=0$에서 최대이다.</p>
+      <p style="margin: 0;">최댓값은 $\frac32\times2=3$이다.</p>
+    </div>
+    <div style="break-inside: avoid; margin-bottom: 4mm;">
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 17px; color: #d2436a; margin-bottom: 3mm;">3-2</div>
+      <div style="display: flex; align-items: center; gap: 3mm; margin-bottom: 3mm;">
+        <span style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #e9799e; padding: 1mm 3mm; border-radius: 1.2mm;">정답</span>
+        <span style="font-size: 14px;">③</span>
+      </div>
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #f3aec5; padding: 1mm 3mm; border-radius: 1.2mm; display: inline-block; margin-bottom: 2mm;">해설</div>
+      <p style="margin: 0;">$f'(-2)=10$이므로 접선은 $y=10x+16$이고 $x^3-12x-16=(x+2)^2(x-4)$에서 $\mathrm B(4,56)$이다.</p>
+      <p style="margin: 0;">넓이는 $\frac12\times6\times\{10k+16-f(k)\}=3(k+2)^2(4-k)$이다.</p>
+      <p style="margin: 0;">$k=2$에서 최대 $3\times16\times2=96$이다.</p>
+    </div>
+    <div style="break-inside: avoid; margin-bottom: 4mm;">
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 17px; color: #d2436a; margin-bottom: 3mm;">4-1</div>
+      <div style="display: flex; align-items: center; gap: 3mm; margin-bottom: 3mm;">
+        <span style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #e9799e; padding: 1mm 3mm; border-radius: 1.2mm;">정답</span>
+        <span style="font-size: 14px;">②</span>
+      </div>
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #f3aec5; padding: 1mm 3mm; border-radius: 1.2mm; display: inline-block; margin-bottom: 2mm;">해설</div>
+      <p style="margin: 0;">평균값 정리에서 $f(4)-f(2)=2f'(c)$인 $c\in(2,4)$가 있다.</p>
+      <p style="margin: 0;">$-2\le f'(c)\le6$이므로 $-4\le10-f(2)\le12$, 즉 $-2\le f(2)\le14$이다.</p>
+      <p style="margin: 0;">함정: 제한이 대칭이 아니므로 폭이 다르다. $f=6x-14$, $f=-2x+18$에서 양 끝이 실제로 된다.</p>
+      <p style="margin: 0;">$M-m=14-(-2)=16$이다.</p>
+    </div>
+    <div style="break-inside: avoid; margin-bottom: 4mm;">
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 17px; color: #d2436a; margin-bottom: 3mm;">4-2</div>
+      <div style="display: flex; align-items: center; gap: 3mm; margin-bottom: 3mm;">
+        <span style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #e9799e; padding: 1mm 3mm; border-radius: 1.2mm;">정답</span>
+        <span style="font-size: 14px;">③</span>
+      </div>
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #f3aec5; padding: 1mm 3mm; border-radius: 1.2mm; display: inline-block; margin-bottom: 2mm;">해설</div>
+      <p style="margin: 0;">평균값 정리에서 $|f(4)-f(2)|=2|f'(c)|\le10$이다.</p>
+      <p style="margin: 0;">$0\le f(2)\le20$이고 $f=\pm5(x-4)+10$에서 등호가 성립한다.</p>
+      <p style="margin: 0;">$M-m=20$이다.</p>
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 18mm; bottom: 15mm; font-family: 'Aggro', sans-serif; font-weight: 300; font-size: 11px; color: #e9799e;">정답 및 해설</div>
+  <div style="position: absolute; right: 0; bottom: 14mm; display: flex; align-items: center;">
+    <div style="width: 14mm; height: 8mm; background: #f3aec5; border-top-left-radius: 4mm; border-bottom-left-radius: 4mm; margin-right: 1.5mm;"></div>
+    <div style="width: 22mm; height: 8mm; background: #d2436a; border-top-left-radius: 4mm; border-bottom-left-radius: 4mm; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 12px; color: #ffffff;">237</div>
+  </div>
+</section>
+
+<section class="page" id="s238" data-screen-label="07 정답 및 해설" style="background: #ffffff; font-family: 'Noto Serif KR', serif; color: #1e1a1b; position: relative; overflow: hidden;">
+  <div style="position: absolute; left: 0; right: 0; top: 0; height: 43px; background: #fdf2f6;"></div>
+  <div style="position: absolute; left: 0; right: 0; top: 43px; height: 62px; background: #d2436a; display: flex; align-items: center; justify-content: flex-end; padding-right: 18mm; box-sizing: border-box;">
+    <span style="font-family: 'Aggro', sans-serif; font-size: 13px; color: #ffffff;"><span style="font-weight: 300;">프랙티컬</span> <span style="font-weight: 700;">수학Ⅱ</span></span>
+  </div>
+  <div style="position: absolute; left: 0; right: 0; top: 105px; height: 15px; background: #f7c9da;"></div>
+
+  <div style="position: absolute; left: 18mm; right: 18mm; top: 165px; bottom: 26mm; column-count: 2; column-fill: auto; column-gap: 12mm; font-size: 13px; line-height: 2.0;">
+    <div style="break-inside: avoid; margin-bottom: 4mm;">
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 17px; color: #d2436a; margin-bottom: 3mm;">5-1</div>
+      <div style="display: flex; align-items: center; gap: 3mm; margin-bottom: 3mm;">
+        <span style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #e9799e; padding: 1mm 3mm; border-radius: 1.2mm;">정답</span>
+        <span style="font-size: 14px;">$303$</span>
+      </div>
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #f3aec5; padding: 1mm 3mm; border-radius: 1.2mm; display: inline-block; margin-bottom: 2mm;">해설</div>
+      <p style="margin: 0;">A가 OB의 중점이므로 $\mathrm A(t,\frac t2)$, $\mathrm B(2t,t)$이고, $\overline{\mathrm{OC}}=\overline{\mathrm{BC}}$에서 $\mathrm C(\frac{5t}4,0)$이다.</p>
+      <p style="margin: 0;">함정: $t&lt;0$이므로 $\frac{5|t|}4=\frac52$에서 $t=-2$, $\mathrm A(-2,-1)$, $\mathrm C(-\frac52,0)$이다.</p>
+      <p style="margin: 0;">접선의 기울기는 $\frac{-1-0}{-2+\frac52}=-2$이고 $f(x)-\frac x2=kx(x+2)(x+4)$에서 $f'(-2)=\frac12-4k=-2$, $k=\frac58$이다.</p>
+      <p style="margin: 0;">$f(6)=3+\frac58\times6\times8\times10=303$이다.</p>
+    </div>
+    <div style="break-inside: avoid; margin-bottom: 4mm;">
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 17px; color: #d2436a; margin-bottom: 3mm;">5-2</div>
+      <div style="display: flex; align-items: center; gap: 3mm; margin-bottom: 3mm;">
+        <span style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #e9799e; padding: 1mm 3mm; border-radius: 1.2mm;">정답</span>
+        <span style="font-size: 14px;">$62$</span>
+      </div>
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #f3aec5; padding: 1mm 3mm; border-radius: 1.2mm; display: inline-block; margin-bottom: 2mm;">해설</div>
+      <p style="margin: 0;">$\mathrm C(\frac{5t}4,0)$에서 $t=1$, $\mathrm A(1,\frac12)$, $\mathrm B(2,1)$이다.</p>
+      <p style="margin: 0;">접선 기울기 $\frac{1/2}{1-5/4}=-2$이고 $f-\frac x2=kx(x-1)(x-2)$에서 $\frac12-k=-2$, $k=\frac52$이다.</p>
+      <p style="margin: 0;">$f(4)=2+\frac52\times4\times3\times2=62$이다.</p>
+    </div>
+    <div style="break-inside: avoid; margin-bottom: 4mm;">
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 17px; color: #d2436a; margin-bottom: 3mm;">6-1</div>
+      <div style="display: flex; align-items: center; gap: 3mm; margin-bottom: 3mm;">
+        <span style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #e9799e; padding: 1mm 3mm; border-radius: 1.2mm;">정답</span>
+        <span style="font-size: 14px;">③</span>
+      </div>
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #f3aec5; padding: 1mm 3mm; border-radius: 1.2mm; display: inline-block; margin-bottom: 2mm;">해설</div>
+      <p style="margin: 0;">$f(2)=8-12+4+a=2$에서 $a=2$이다.</p>
+      <p style="margin: 0;">$f'(2)=12-12+2=2$이므로 수직인 기울기는 $-\frac12$이다. 함정: $-2$가 아니다.</p>
+      <p style="margin: 0;">$g'(2)=4+b=-\frac12$에서 $b=-\frac92$, $g(2)=4-9+c=2$에서 $c=7$이다.</p>
+      <p style="margin: 0;">$|abc|=2\times\frac92\times7=63$이다.</p>
+    </div>
+    <div style="break-inside: avoid; margin-bottom: 4mm;">
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 17px; color: #d2436a; margin-bottom: 3mm;">6-2</div>
+      <div style="display: flex; align-items: center; gap: 3mm; margin-bottom: 3mm;">
+        <span style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #e9799e; padding: 1mm 3mm; border-radius: 1.2mm;">정답</span>
+        <span style="font-size: 14px;">③</span>
+      </div>
+      <div style="font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 11px; color: #ffffff; background: #f3aec5; padding: 1mm 3mm; border-radius: 1.2mm; display: inline-block; margin-bottom: 2mm;">해설</div>
+      <p style="margin: 0;">$f(1)=a=3$이고 $f'(1)=-1$이므로 $g'(1)=2+b=1$, $b=-1$이다.</p>
+      <p style="margin: 0;">$g(1)=1-1+c=3$에서 $c=3$이다.</p>
+      <p style="margin: 0;">$|abc|=9$이다.</p>
+    </div>
+  </div>
+
+  <div style="position: absolute; right: 18mm; bottom: 15mm; font-family: 'Aggro', sans-serif; font-weight: 300; font-size: 11px; color: #e9799e;">정답 및 해설</div>
+  <div style="position: absolute; left: 0; bottom: 14mm; display: flex; align-items: center;">
+    <div style="width: 22mm; height: 8mm; background: #d2436a; border-top-right-radius: 4mm; border-bottom-right-radius: 4mm; display: flex; align-items: center; justify-content: center; font-family: 'Aggro', sans-serif; font-weight: 700; font-size: 12px; color: #ffffff;">238</div>
+    <div style="width: 14mm; height: 8mm; background: #f3aec5; border-top-right-radius: 4mm; border-bottom-right-radius: 4mm; margin-left: 1.5mm;"></div>
+  </div>
+</section>
+
+<section class="page" id="quick04" data-screen-label="08 빠른 정답" style="background: #ffffff; font-family: 'Aggro', sans-serif; color: #201a1c; position: relative; overflow: hidden;">
+  <div style="position: absolute; left: 0; top: 14mm; right: 0; height: 18mm; background: #e9799e;"></div>
+  <div style="position: absolute; left: 0; top: 14mm; width: 58mm; height: 18mm; background: #d2436a; border-top-right-radius: 9mm; border-bottom-right-radius: 9mm; display: flex; align-items: center; padding-left: 14mm; box-sizing: border-box;">
+    <span style="font-weight: 700; font-size: 20px; color: #ffffff;">빠른 정답</span>
+  </div>
+  <div style="position: absolute; left: 50mm; top: 14mm; width: 20mm; height: 18mm; background: rgba(255,255,255,0.22); border-top-right-radius: 9mm; border-bottom-right-radius: 9mm;"></div>
+
+  <div style="position: absolute; left: 16mm; right: 16mm; top: 46mm; display: grid; grid-template-columns: 1fr 1fr; gap: 10mm;">
+    <div style="display: flex; flex-direction: column; gap: 5mm;">
+      <div style="background: #d2436a; border-radius: 5mm; padding: 3mm 6mm; color: #ffffff; font-weight: 700; font-size: 14px; line-height: 1.4;">Chapter 04 <span style="font-weight: 500; font-size: 12px;">도함수의 활용</span></div>
+      <div style="display: grid; grid-template-columns: 11mm 16mm 11mm 16mm; row-gap: 3.4mm; column-gap: 6mm; font-size: 12px; align-items: baseline;">
+        <span style="font-weight: 700; color: #d2436a;">1-1</span><span style="font-family: 'Noto Serif KR', serif;">$41$</span><span style="font-weight: 700; color: #d2436a;">1-2</span><span style="font-family: 'Noto Serif KR', serif;">$100$</span>
+        <span style="font-weight: 700; color: #d2436a;">2-1</span><span style="font-family: 'Noto Serif KR', serif;">④</span><span style="font-weight: 700; color: #d2436a;">2-2</span><span style="font-family: 'Noto Serif KR', serif;">③</span>
+        <span style="font-weight: 700; color: #d2436a;">3-1</span><span style="font-family: 'Noto Serif KR', serif;">①</span><span style="font-weight: 700; color: #d2436a;">3-2</span><span style="font-family: 'Noto Serif KR', serif;">③</span>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 5mm;">
+      <div style="display: grid; grid-template-columns: 11mm 16mm 11mm 16mm; row-gap: 3.4mm; column-gap: 6mm; font-size: 12px; align-items: baseline;">
+        <span style="font-weight: 700; color: #d2436a;">4-1</span><span style="font-family: 'Noto Serif KR', serif;">②</span><span style="font-weight: 700; color: #d2436a;">4-2</span><span style="font-family: 'Noto Serif KR', serif;">③</span>
+        <span style="font-weight: 700; color: #d2436a;">5-1</span><span style="font-family: 'Noto Serif KR', serif;">$303$</span><span style="font-weight: 700; color: #d2436a;">5-2</span><span style="font-family: 'Noto Serif KR', serif;">$62$</span>
+        <span style="font-weight: 700; color: #d2436a;">6-1</span><span style="font-family: 'Noto Serif KR', serif;">③</span><span style="font-weight: 700; color: #d2436a;">6-2</span><span style="font-family: 'Noto Serif KR', serif;">③</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</doc-page>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;100%&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() { this.tries = 0; this.pump(); }
+  pump = () => {
+    const el = this.el || document.querySelector('doc-page');
+    if (window.renderMathInElement && el) {
+      try {
+        window.renderMathInElement(el, {
+          delimiters: [{ left: '$', right: '$', display: false }],
+          throwOnError: false,
+          ignoredClasses: ['katex'],
+        });
+      } catch (e) {}
+    }
+    if (this.tries++ < 12) setTimeout(this.pump, 500);
+  };
+  renderVals() { return {}; }
+}
+
+</script>
+</body>
+</html>
