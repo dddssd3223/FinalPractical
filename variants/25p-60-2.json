@@ -1,0 +1,30 @@
+{
+  "variant_type": "생존 확인형",
+  "type": "객관식",
+  "basis": "3-A 2행 (극한값 3/5 → 5/7)",
+  "changed": [
+    "극한값 3/5 → 5/7"
+  ],
+  "naturalness": "",
+  "stem": "최고차항의 계수가 $1$인 이차함수 $f(x)$가 $\\displaystyle\\lim_{x\\to a}\\frac{f(x)-(x-a)}{f(x)+(x-a)}=\\frac57$을 만족시킨다. 방정식 $f(x)=0$의 두 근을 $\\alpha$, $\\beta$라 할 때, $|\\alpha-\\beta|$의 값은? (단, $a$는 상수이다.)",
+  "choices": [
+    "2",
+    "4",
+    "6",
+    "8",
+    "10"
+  ],
+  "answer": "6",
+  "trap_answer": null,
+  "trap_path": null,
+  "explanation": [
+    "$f(a)\\neq0$이면 극한이 $1$이므로 $f(a)=0$, $f(x)=(x-a)(x-b)$이다.",
+    "약분하면 $\\dfrac{d-1}{d+1}=\\dfrac57$ ($d=a-b$)이다.",
+    "$d=6$이므로 $|\\alpha-\\beta|=6$이다."
+  ],
+  "drop": "생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)",
+  "id": "25p-60-2",
+  "origin": "25p-60",
+  "source": "2017학년도 수능 나형 18번 변형",
+  "chapter": 1
+}

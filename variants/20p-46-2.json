@@ -1,0 +1,30 @@
+{
+  "variant_type": "생존 확인형",
+  "type": "객관식",
+  "basis": "3-A 2행 (곡선 x²−4x, 기울기 −4: 소거 구조 유지)",
+  "changed": [
+    "곡선 x²−2x → x²−4x, 기울기 −2 → −4 (0<t<4)"
+  ],
+  "naturalness": "곡선과 기울기를 같은 구조로 함께 바꾼 한 가지 변경.",
+  "stem": "곡선 $y=x^2-4x$ 위의 점 $\\mathrm{P}(t,\\,t^2-4t)\\,(0<t<4)$를 지나고 기울기가 $-4$인 직선이 곡선 $y=x^2-4x$와 만나는 점 중 $\\mathrm{P}$가 아닌 점을 $\\mathrm{Q}$라 하자. 선분 $\\mathrm{OQ}$의 길이를 $L(t)$라 할 때, $\\displaystyle\\lim_{t\\to0+}\\frac{L(t)}{t}$의 값은? (단, $\\mathrm{O}$는 원점이다.)",
+  "choices": [
+    "sqrt(13)",
+    "sqrt(15)",
+    "sqrt(17)",
+    "sqrt(19)",
+    "sqrt(21)"
+  ],
+  "answer": "sqrt(17)",
+  "trap_answer": null,
+  "trap_path": null,
+  "explanation": [
+    "$x^2-4x=-4(x-t)+t^2-4t$에서 $x^2=t^2$이므로 $\\mathrm Q(-t,\\,t^2+4t)$이다.",
+    "$L(t)=\\sqrt{t^2+(t^2+4t)^2}=t\\sqrt{1+(t+4)^2}$이다.",
+    "$\\displaystyle\\lim_{t\\to0+}\\frac{L(t)}{t}=\\sqrt{17}$이다."
+  ],
+  "drop": "생존 확인형: 수치만 바꾼 쉬운 변형 (함정 없음)",
+  "id": "20p-46-2",
+  "origin": "20p-46",
+  "source": "2025년 수능특강 [25009-0023] 변형",
+  "chapter": 1
+}
