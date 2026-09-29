@@ -1,0 +1,29 @@
+{
+  "variant_type": "생존 확인형",
+  "type": "객관식",
+  "basis": "3-A 2행 (극한값 1/4 → 1/2)",
+  "changed": [
+    "극한값 1/4 → 1/2"
+  ],
+  "naturalness": "",
+  "stem": "최고차항의 계수가 $1$이고 $f(1)=0$인 삼차함수 $f(x)$가 $\\displaystyle\\lim_{x\\to2}\\frac{f(x)}{(x-2)\\{f'(x)\\}^2}=\\frac12$을 만족시킬 때, $f(3)$의 값은?",
+  "choices": [
+    "4",
+    "6",
+    "8",
+    "10",
+    "12"
+  ],
+  "answer": "6",
+  "trap_answer": null,
+  "trap_path": null,
+  "explanation": [
+    "극한이 유한하므로 $f(2)=0$이고 $\\dfrac{f(x)}{x-2}\\to f'(2)$이다.",
+    "$\\dfrac1{f'(2)}=\\dfrac12$에서 $f'(2)=2$이다.",
+    "$f=(x-1)(x-2)(x-k)$에서 $2-k=2$, $k=0$이므로 $f(3)=2\\times1\\times3=6$이다."
+  ],
+  "id": "73p-60-2",
+  "origin": "73p-60",
+  "source": "2018학년도 수능 나형 18번 변형",
+  "chapter": 3
+}
