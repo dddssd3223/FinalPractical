@@ -21,6 +21,7 @@
     "$h=f-g$는 최고차항 계수 $1$, $h(\\alpha)=h'(\\alpha)=0$이므로 $h=(x-\\alpha)^2(x-\\gamma)$, $h'(\\beta)=0$에서 $3\\beta=\\alpha+2\\gamma$, $\\gamma=\\alpha-12$이다.",
     "$h(\\beta+1)=(-7)^2\\times(\\alpha-7-\\alpha+12)=49\\times5=245$이다."
   ],
+  "drop": "원문과 같은 풀이이고 함정이 부호 실수 수준",
   "id": "75p-64-1",
   "origin": "75p-64",
   "source": "2018학년도 수능 6월 모의평가 나형 30번 변형",

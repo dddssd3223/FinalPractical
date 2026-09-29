@@ -9,7 +9,7 @@ def stem(ga, nr):
 
 def box(ga, nr):
     return [r"(가) $-2\le x\le2$에서 $f(x)=3$과 $f(x)=-3$을 만족시키는 $x$의 값은 각각 " + ga + r" 있다.",
-            r"(나) " + nr + r"인 모든 실수 $x$에 대하여 $f(x)=f(x+4)$이다."]
+            r"(나) $" + nr + r"$인 모든 실수 $x$에 대하여 $f(x)=f(x+4)$이다."]
 
 ORIG = dict(
     id="37p-22", chapter=2, page=37, num=22, source="2021년 수능완성 [21054-0134]", type="객관식",

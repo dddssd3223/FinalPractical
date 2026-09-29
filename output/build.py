@@ -6,6 +6,8 @@
 해설 쪽은 블록 높이를 브라우저에서 잰 뒤(measure.js) 두 단에 차례로 채워 나눈다."""
 import html, json, pathlib, re, subprocess, sys, unicodedata
 from sympy import sympify, latex, nsimplify
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from figs import FIGS
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "output"
@@ -77,6 +79,8 @@ CHOICES = '<div style="display: grid; grid-template-columns: repeat(5, 1fr); gap
 
 def body_html(q):
     parts = [f'<p style="margin: 0; font-size: 15px; line-height: 2.1;">{esc(q["stem"])}</p>']
+    if q["id"] in FIGS:  # 그림 (도형·그래프 문항)
+        parts.append('<div style="align-self: center;">' + FIGS[q["id"]]() + "</div>")
     if q.get("box"):
         parts.append(BOX.format("".join(f'<p style="margin: 0;">{esc(l)}</p>' for l in q["box"])))
     if q.get("bogi"):
@@ -194,6 +198,31 @@ def quick(chapter_rows):
     return pages
 
 
+CONTENTS = section("contents")
+CROW = re.findall(r'\n    <div style="border-top: 1px solid #eeb5c8;.*?\n    </div>', CONTENTS, re.S)
+
+
+def contents(rows):
+    """rows: [(왼쪽 칩 문구, 제목, 쪽)]"""
+    tpl = CROW[0]
+    out = []
+    for chip, title, page in rows:
+        r = tpl.replace("Chapter 01", chip).replace("함수의 극한과 연속, 미분계수와 도함수", title).replace(">03</span>", f">{page:02d}</span>")
+        if not chip:
+            r = r.replace('<span style="font-weight: 700; font-size: 19px; color: #d2436a;"></span>', "<span></span>")
+        out.append(r)
+    start = CONTENTS.index(CROW[0]); end = CONTENTS.index(CROW[-1]) + len(CROW[-1])
+    sec = CONTENTS[:start] + "".join(out) + CONTENTS[end:]
+    return sec.replace("PRACTICAL SERIES", "PRACTICAL ESSENCE").replace('color: #201a1c;">수학Ⅱ</span>', 'color: #201a1c;">미적분1</span>')
+
+
+def brand(page_html):
+    """머리말·꼬리말 문구: 프랙티컬 수학Ⅱ / 미적분I → 프랙티컬 ESSENCE 미적분1"""
+    for old in ("수학Ⅱ", "미적분I"):
+        page_html = page_html.replace(f'프랙티컬</span> <span style="font-weight: 700;">{old}', '프랙티컬 ESSENCE</span> <span style="font-weight: 700;">미적분1')
+    return page_html
+
+
 def wrap(pages):
     head = HTML[:HTML.index("<doc-page")]
     head = head.replace('src="./support.js"', 'src="../support.js"').replace('src="./doc-page.js"', 'src="../doc-page.js"')
@@ -242,17 +271,19 @@ def main():
     allitems = [(ch, l, q) for ch, items in data.items() for l, q in items]
     blocks = [sol_block(l, q) for _, l, q in allitems]
     hs = measure(blocks)
-    pages, num = [], 3  # 표지가 3쪽, 첫 문항이 4쪽 (템플릿과 같음)
+    pages, num = [None], 1  # 1쪽 목차(나중에 채움), 2쪽부터 챕터 표지
+    toc = []
     for ch, items in data.items():
-        if pages:
-            num += 1
+        num += 1
         pages.append(cover(ch))
+        toc.append((f"Chapter {CHAPTERS[ch][0]}", CHAPTERS[ch][1], num))
         for i, (label, q) in enumerate(items):
             num += 1
             pages.append(problem_page(q, label, num, i == 0, ch))
         print(f"ch{ch}: 변형 {len(items)}개")
     num += 1
     pages.append(SOLCOVER)
+    toc.append(("", "정답 및 해설", num))
     for idx in paginate(hs):
         num += 1
         pages.append(solution_page([blocks[i] for i in idx], num))
@@ -269,7 +300,8 @@ def main():
         pages.append(qp)
     for old in OUT.glob("ch*.dc.html"):
         old.unlink()
-    (OUT / "변형문항.dc.html").write_text(wrap(pages))
+    pages[0] = contents(toc)
+    (OUT / "변형문항.dc.html").write_text(brand(wrap(pages)))
     print(f"총 변형 {len(allitems)}개, {len(pages)}쪽 (끝 쪽 {num})")
 
 
